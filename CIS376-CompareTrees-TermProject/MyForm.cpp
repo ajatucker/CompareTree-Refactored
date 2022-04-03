@@ -1,4 +1,7 @@
 #include "MyForm.h"
+#include "avlTree.h"
+#include "bsTree.h"
+#include "splayTree.h"
 using namespace System;
 using namespace System::Windows::Forms;
 
