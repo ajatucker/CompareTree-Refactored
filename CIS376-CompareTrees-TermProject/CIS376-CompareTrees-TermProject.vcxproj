@@ -129,6 +129,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="splayTree.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

@@ -35,6 +35,8 @@ namespace CIS376CompareTreesTermProject {
 			}
 		}
 
+	protected:
+
 	private:
 		/// <summary>
 		/// Required designer variable.
