@@ -1,13 +1,34 @@
 #pragma once
+#include "tree.h"
+#include "avlTree.h"
+#include "splayTree.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <vector>
+
+using std::string;
+
+using std::vector;
+
+using std::ofstream;
+
+using std::cout;
+
+using std::endl;
+
+using std::max;
+
+using namespace System;
+using namespace System::ComponentModel;
+using namespace System::Collections;
+using namespace System::Windows::Forms;
+using namespace System::Data;
+using namespace System::Drawing;
 
 namespace CIS376CompareTreesTermProject {
 
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
 
 	/// <summary>
 	/// Summary for MyForm
@@ -21,9 +42,13 @@ namespace CIS376CompareTreesTermProject {
 			//
 			//TODO: Add the constructor code here
 			//
+
 		}
 
 	protected:
+		tree* bst = new tree();
+		tree* a = new avl();
+		tree* spl = new splay();
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -296,8 +321,14 @@ namespace CIS376CompareTreesTermProject {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		int test = 3;
-
-		label1->Text = "Insert: " + System::Convert::ToString(test);
+		int insertNum = 0;
+		insertNum = Convert::ToInt32(textBox1->Text);
+		a->insertNode(insertNum);
+		spl->insertNode(insertNum);
+		bst->insertNode(insertNum);
+		label1->Text = "Insert: " + System::Convert::ToString(a->getCountInserts());
+		label4->Text = "Insert: " + System::Convert::ToString(bst->getCountInserts());
+		label7->Text = "Insert: " + System::Convert::ToString(spl->getCountInserts());
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
