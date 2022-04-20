@@ -20,7 +20,7 @@ using std::endl;
 
 using std::max;
 
-class avl:public tree
+class avl: public tree
 {
 protected:
 	
@@ -37,7 +37,6 @@ protected:
 	void deleteNode(treeNode*& p, vector<string>& s);
 	//void getPredecessor(treeNode* p, int& item);
 	//void destroy(treeNode*& p);
-	int getHeight(treeNode* p);
 	int getBalance(treeNode* p);
 	void rotateRight(treeNode*& r); //change
 	void rotateLeft(treeNode*& r); //these
@@ -49,10 +48,11 @@ protected:
 
 public:
 	avl();
-	void insertNode(int item, ofstream& f);
+	int getHeight(treeNode* p);
+	//void insertNode(int item, ofstream& f);
 	//void printTree(ofstream& f);
-	void searchNode(int item, bool& status);
-	void deleteItem(int item, ofstream& f);
+	//void searchNode(int item, bool& status);
+	//void deleteItem(int item, ofstream& f);
 	//int findHeight();
 	//int getCountDeletes();
 	//int getCountInserts();
@@ -112,6 +112,7 @@ Desc: insert node function that calls internal insert function
 Pre-condition : integer, ofstream
 Post-condition : none
 */
+/*
 void avl::insertNode(int item, ofstream& f)
 {
 	vector<string> rotate;
@@ -130,6 +131,7 @@ void avl::insertNode(int item, ofstream& f)
 		cout << endl;
 	}
 }
+*/
 
 /*
 Desc: inserts a node at a leaf point
@@ -142,20 +144,22 @@ void avl::insert(treeNode*& p, int item, vector<string>& s)
 	{
 		p = new treeNode;
 		p->key = item;
-		p->twin = NULL;
-		p->numOfTwin = 1;
+		//p->twin = NULL;
+		//p->numOfTwin = 1;
 		p->right = NULL;
 		p->left = NULL;
 		p->height = 1;
 		return;
 	}
+	/*
 	else if (item == p->key)
 	{
-		p->numOfTwin++;
+		//p->numOfTwin++;
 		countInsert++;
-		insert(p->twin, item, s);
+		//insert(p->twin, item, s);
 		return;
 	}
+	*/
 	else if (item < p->key)
 	{
 		countInsert++;
@@ -320,11 +324,13 @@ Desc: search function that calls internal search function
 Pre-condition : integer, boolean
 Post-condition : none
 */
+/*
 void avl::searchNode(int item, bool& status)
 {
 	search(root, item, status);
 	countSearch++;
 }
+*/
 
 /*
 Desc: searches for a node
@@ -359,6 +365,7 @@ Desc: delete function that calls internal search for delete function
 Pre-condition :integer
 Post-condition : none
 */
+/*
 void avl::deleteItem(int item, ofstream& f)
 {
 	vector<string> rotate;
@@ -377,6 +384,7 @@ void avl::deleteItem(int item, ofstream& f)
 		cout << endl;
 	}
 }
+*/
 
 /*
 Desc: searches for where to delete
@@ -453,7 +461,7 @@ void avl::deleteNode(treeNode*& p, vector<string>& s)
 		treeNode* temp = p;
 		getPredecessor(temp, item); // p->right
 		p->key = temp->key;
-		p->twin = temp->twin;
+		//p->twin = temp->twin;
 		del(p->right, item);// , s);
 	}
 
