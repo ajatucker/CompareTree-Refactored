@@ -41,9 +41,10 @@ protected:
 	int countDelete;
 	int countInsert;
 	*/
+	string treeType = "Binary Search Tree";
 
 	void insert(treeNode*& p, int item);
-	void print(treeNode* p, ofstream& f, int addSpaces);
+	//void print(treeNode* p, ofstream& f, int addSpaces);
 	void search(treeNode* p, int item, bool& status);
 	void del(treeNode*& p, int item);
 	void deleteNode(treeNode*& p);
@@ -54,7 +55,7 @@ protected:
 public:
 	bst();
 	void insertNode(int item);
-	void printTree(ofstream& f);
+	//void printTree(ofstream& f);
 	void searchNode(int item, bool& status);
 	void deleteItem(int item);
 	//int findHeight();
@@ -317,7 +318,7 @@ void bst::getPredecessor(treeNode* p, int& item)
 Desc: calls internal print function
 Pre-condition :ofstream
 Post-condition : none
-*/
+*//*
 void bst::printTree(ofstream& f)
 {
 	cout << "---------------------------------------------------------------" << endl;
@@ -325,13 +326,13 @@ void bst::printTree(ofstream& f)
 	print(root, f, 0);
 	f << "---------------------------------------------------------------" << endl;
 	cout << "---------------------------------------------------------------" << endl;
-}
+}*/
 
 /*
 Desc: prints
 Pre-condition :treeNode pointer, ofstream, integer
 Post-condition : none
-*/
+*//*
 void bst::print(treeNode* p, ofstream& f, int addSpaces)
 {
 	if (root != NULL)
@@ -364,7 +365,7 @@ void bst::print(treeNode* p, ofstream& f, int addSpaces)
 		}
 
 	}
-}
+}*/
 
 /*
 Desc: calls internal height function to find the height of the tree

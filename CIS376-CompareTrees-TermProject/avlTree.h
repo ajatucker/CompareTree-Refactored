@@ -28,7 +28,7 @@ protected:
 	//int countSearch;
 	//int countDelete;
 	//int countInsert;
-	
+	string treeType = "AVL Tree";
 
 	void insert(treeNode*& p, int item, vector<string>& s);
 	//void print(treeNode* p, ofstream& f, int addSpaces);
