@@ -24,8 +24,8 @@ struct treeNode
 	int key;
 	treeNode* right;
 	treeNode* left;
-	treeNode* twin;
-	int numOfTwin;
+	//treeNode* twin;
+	//int numOfTwin;
 	int height;
 };
 
@@ -66,6 +66,7 @@ public:
 	int getCountDeletes();
 	int getCountInserts();
 	int getCountSearches();
+	~tree();
 };
 
 
@@ -127,12 +128,13 @@ void tree::insert(treeNode*& p, int item)
 	{
 		p = new treeNode;
 		p->key = item;
-		p->numOfTwin = 1;
-		p->twin = NULL;
+		//p->numOfTwin = 1;
+		//p->twin = NULL;
 		p->right = NULL;
 		p->left = NULL;
 		return;
 	}
+	/*
 	else if (item == p->key)
 	{
 		//p->twin = new treeNode;
@@ -141,6 +143,7 @@ void tree::insert(treeNode*& p, int item)
 		insert(p->twin, item);
 		return;
 	}
+	*/
 	else if (item < p->key)
 	{
 		countInsert++;
@@ -225,6 +228,7 @@ void tree::del(treeNode*& p, int item)
 		countDelete++;
 		del(p->right, item);
 	}
+	/*
 	else if (item == p->key && p->numOfTwin > 1)
 	{
 		p->numOfTwin--;
@@ -238,6 +242,7 @@ void tree::del(treeNode*& p, int item)
 		//prev->twin = temp->twin;
 		//delete temp;
 	}
+	*/
 	else
 	{
 		deleteNode(p);
@@ -283,7 +288,7 @@ void tree::deleteNode(treeNode*& p)
 		treeNode* temp = p;
 		getPredecessor(temp, item); // p->right
 		p->key = temp->key;
-		p->twin = temp->twin;
+		//p->twin = temp->twin;
 		del(p->right, item);
 	}
 
@@ -402,7 +407,13 @@ void tree::destroy(treeNode*& p)
 	{
 		destroy(p->left);
 		destroy(p->right);
-		p = p->twin;
+		//p = p->twin;
 		delete p;
 	}
+}
+
+tree::~tree()
+{
+	destroy(root);
+	root = NULL;
 }
