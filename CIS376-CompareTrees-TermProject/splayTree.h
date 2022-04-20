@@ -19,9 +19,10 @@ using std::endl;
 
 using std::max;
 
-class splay
+class splay: public tree
 {
 private:
+	/*
 	struct treeNode
 	{
 		int key;
@@ -35,15 +36,16 @@ private:
 	int countSearch;
 	int countDelete;
 	int countInsert;
+	*/
 
 	void insert(treeNode*& p, int item, vector<string>& s);
-	void print(treeNode* p, int addSpaces, ofstream& f);
+	//void print(treeNode* p, int addSpaces, ofstream& f);
 	void search(treeNode*& p, int item, bool& status, vector<string>& s);
-	void del(treeNode*& p, int item);
+	//void del(treeNode*& p, int item);
 	void deleteNode(treeNode*& p);
-	void getPredecessor(treeNode* p, int& item);
-	void destroy(treeNode*& p);
-	int height(treeNode* p, int& h);
+	//void getPredecessor(treeNode* p, int& item);
+	//void destroy(treeNode*& p);
+	//int height(treeNode* p, int& h);
 	void zig(treeNode*& r);
 	void zag(treeNode*& r);
 	void zagZag(treeNode*& r);
@@ -54,14 +56,14 @@ private:
 
 public:
 	splay();
-	void insertNode(int item, ofstream& f);
-	void printTree(ofstream& f);
-	void searchNode(int item, bool& status, ofstream& f);
-	void deleteItem(int item, ofstream& f);
-	int findHeight();
-	int getCountDeletes();
-	int getCountInserts();
-	int getCountSearches();
+	void insertNode(int item);//, ofstream& f);
+	//void printTree(ofstream& f);
+	void searchNode(int item, bool& status); //, ofstream& f);
+	void deleteItem(int item); //ofstream& f);
+	//int findHeight();
+	//int getCountDeletes();
+	//int getCountInserts();
+	//int getCountSearches();
 	~splay();
 };
 
@@ -81,30 +83,36 @@ Desc: getter for count deletes
 Pre-condition : none
 Post-condition : returns count delete
 */
+/*
 int splay::getCountDeletes()
 {
 	return countDelete;
 }
+*/
 
 /*
 Desc: getter for count inserts
 Pre-condition : none
 Post-condition : returns count inserts
 */
+/*
 int splay::getCountInserts()
 {
 	return countInsert;
 }
+*/
 
 /*
 Desc: getter for count searches
 Pre-condition : none
 Post-condition : returns count searches
 */
+/*
 int splay::getCountSearches()
 {
 	return countSearch;
 }
+*/
 
 /*
 Desc: splaying function that splays given root to node
@@ -208,7 +216,7 @@ Desc: insert node function that calls internal insert function
 Pre-condition : integer, ofstream
 Post-condition : none
 */
-void splay::insertNode(int item, ofstream& f)
+void splay::insertNode(int item)//, ofstream& f)
 {
 	vector<string> rotate;
 	vector<string>::iterator i;
@@ -219,11 +227,11 @@ void splay::insertNode(int item, ofstream& f)
 		cout << "Insert Rotations: " << rotate.size() << " ";
 		for (i = rotate.begin(); i < rotate.end(); i++)
 		{
-			f << *i << " ";
-			cout << *i << " ";
+			//f << *i << " ";
+			//cout << *i << " ";
 		}
-		f << endl;
-		cout << endl;
+		//f << endl;
+		//cout << endl;
 	}
 }
 
@@ -348,7 +356,7 @@ Desc: search function that calls internal search function
 Pre-condition : integer, boolean, ofstream
 Post-condition : none
 */
-void splay::searchNode(int item, bool& status, ofstream& f)
+void splay::searchNode(int item, bool& status)//, ofstream& f)
 {
 	vector<string> rotate;
 	vector<string>::iterator i;
@@ -359,11 +367,11 @@ void splay::searchNode(int item, bool& status, ofstream& f)
 		cout << "Search Rotations: " << rotate.size() << " ";
 		for (i = rotate.begin(); i < rotate.end(); i++)
 		{
-			f << *i << " ";
-			cout << *i << " ";
+			//f << *i << " ";
+			//cout << *i << " ";
 		}
-		f << endl;
-		cout << endl;
+		//f << endl;
+		//cout << endl;
 	}
 }
 
@@ -404,7 +412,7 @@ Desc: splays item to root, delete function that calls internal search for delete
 Pre-condition :integer
 Post-condition : none
 */
-void splay::deleteItem(int item, ofstream& f)
+void splay::deleteItem(int item)//, ofstream& f)
 {
 	vector<string> rotate;
 	vector<string>::iterator i;
@@ -416,11 +424,11 @@ void splay::deleteItem(int item, ofstream& f)
 		cout << "Delete Rotations: " << rotate.size() << " ";
 		for (i = rotate.begin(); i < rotate.end(); i++)
 		{
-			f << *i << " ";
-			cout << *i << " ";
+			//f << *i << " ";
+			//cout << *i << " ";
 		}
-		f << endl;
-		cout << endl;
+		//f << endl;
+		//cout << endl;
 	}
 }
 
@@ -429,6 +437,7 @@ Desc: searches for where to delete
 Pre-condition : treeNode pointer, integer
 Post-condition : none
 */
+/*
 void splay::del(treeNode*& p, int item)
 {
 	if (p == NULL)
@@ -466,6 +475,7 @@ void splay::del(treeNode*& p, int item)
 	}
 
 }
+*/
 
 /*
 Desc: deletes the node
@@ -504,6 +514,7 @@ Desc: finds the smallest in the tree given
 Pre-condition : treeNode pointer, integer
 Post-condition : none
 */
+/*
 void splay::getPredecessor(treeNode* p, int& item)
 {
 	while (p != NULL && p->left != NULL)
@@ -514,12 +525,14 @@ void splay::getPredecessor(treeNode* p, int& item)
 	}
 	item = p->key;
 }
+*/
 
 /*
 Desc: calls internal print function
 Pre-condition :ofstream
 Post-condition : none
 */
+/*
 void splay::printTree(ofstream& f)
 {
 	cout << "---------------------------------------------------------------" << endl;
@@ -528,12 +541,14 @@ void splay::printTree(ofstream& f)
 	cout << "---------------------------------------------------------------" << endl;
 	f << "---------------------------------------------------------------" << endl;
 }
+*/
 
 /*
 Desc: prints
 Pre-condition :treeNode pointer, ofstream, integer
 Post-condition : none
 */
+/*
 void splay::print(treeNode* p, int addSpaces, ofstream& f)
 {
 	if (root != NULL)
@@ -567,24 +582,28 @@ void splay::print(treeNode* p, int addSpaces, ofstream& f)
 
 	}
 }
+*/
 
 /*
 Desc: calls internal height function to find the height of the tree
 Pre-condition :none
 Post-condition :integer
 */
+/*
 int splay::findHeight()
 {
 	int ht = 0;
 	height(root, ht);
 	return ht;
 }
+*/
 
 /*
 Desc: finds the height of the tree given
 Pre-condition :treeNode pointer, integer
 Post-condition : integer
 */
+/*
 int splay::height(treeNode* p, int& h)
 {
 	if (p == NULL)
@@ -596,12 +615,14 @@ int splay::height(treeNode* p, int& h)
 
 	return (h - 1);
 }
+*/
 
 /*
 Desc: destroys the tree
 Pre-condition :treeNode pointer
 Post-condition : none
 */
+/*
 void splay::destroy(treeNode*& p)
 {
 	if (p != NULL)
@@ -612,6 +633,7 @@ void splay::destroy(treeNode*& p)
 		delete p;
 	}
 }
+*/
 
 //destructor
 splay::~splay()

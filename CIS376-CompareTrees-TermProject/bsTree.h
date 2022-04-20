@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "tree.h"
 
 using std::string;
 
@@ -16,9 +17,16 @@ using std::endl;
 
 using std::max;
 
-class bst
+
+/*
+GET RID OF BST? BST IS DEFAULT?
+
+*/
+
+class bst: protected tree
 {
-private:
+protected:
+	/*
 	struct treeNode
 	{
 		int key;
@@ -32,6 +40,7 @@ private:
 	int countSearch;
 	int countDelete;
 	int countInsert;
+	*/
 
 	void insert(treeNode*& p, int item);
 	void print(treeNode* p, ofstream& f, int addSpaces);
@@ -39,7 +48,7 @@ private:
 	void del(treeNode*& p, int item);
 	void deleteNode(treeNode*& p);
 	void getPredecessor(treeNode* p, int& item);
-	void destroy(treeNode*& p);
+	//void destroy(treeNode*& p);
 	int height(treeNode* p, int& h);
 
 public:
@@ -48,10 +57,10 @@ public:
 	void printTree(ofstream& f);
 	void searchNode(int item, bool& status);
 	void deleteItem(int item);
-	int findHeight();
-	int getCountDeletes();
-	int getCountInserts();
-	int getCountSearches();
+	//int findHeight();
+	//int getCountDeletes();
+	//int getCountInserts();
+	//int getCountSearches();
 	~bst();
 };
 
@@ -71,30 +80,36 @@ Desc: getter for count deletes
 Pre-condition : none
 Post-condition : returns count delete
 */
+/*
 int bst::getCountDeletes()
 {
 	return countDelete;
 }
+*/
 
 /*
 Desc: getter for count inserts
 Pre-condition : none
 Post-condition : returns count inserts
 */
+/*
 int bst::getCountInserts()
 {
 	return countInsert;
 }
+*/
 
 /*
 Desc: getter for count searches
 Pre-condition : none
 Post-condition : returns count searches
 */
+/*
 int bst::getCountSearches()
 {
 	return countSearch;
 }
+*/
 
 /*
 Desc: insert node function that calls internal insert function
@@ -356,12 +371,14 @@ Desc: calls internal height function to find the height of the tree
 Pre-condition :none
 Post-condition :integer
 */
+/*
 int bst::findHeight()
 {
 	int ht = 0;
 	height(root, ht);
 	return (ht - 1);
 }
+*/
 
 /*
 Desc: finds the height of the tree given
@@ -385,6 +402,7 @@ Desc: destroys the tree
 Pre-condition :treeNode pointer
 Post-condition : none
 */
+/*
 void bst::destroy(treeNode*& p)
 {
 	if (p != NULL)
@@ -395,6 +413,7 @@ void bst::destroy(treeNode*& p)
 		delete p;
 	}
 }
+*/
 
 //destructor
 bst::~bst()
