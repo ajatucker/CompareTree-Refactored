@@ -50,6 +50,7 @@ protected:
 	ofstream f;
 	string treeType;
 
+<<<<<<< HEAD
 	void insert(treeNode*& p, int item);
 	void print(treeNode* p, int addSpaces);
 	void search(treeNode* p, int item, bool& status);
@@ -64,6 +65,22 @@ public:
 	void printTree();
 	void searchNode(int item, bool& status);// , ofstream& f);
 	void deleteItem(int item);// , ofstream& f);
+=======
+	virtual void insert(treeNode*& p, int item);
+	virtual void print(treeNode* p, int addSpaces);//ofstream& f, int addSpaces);
+	virtual void search(treeNode* p, int item, bool& status);
+	virtual void del(treeNode*& p, int item);
+	virtual void deleteNode(treeNode*& p);
+	virtual void getPredecessor(treeNode* p, int& item);
+	virtual void destroy(treeNode*& p);
+	virtual int height(treeNode* p, int& h);
+public:
+	tree();
+	virtual void insertNode(int item);//, ofstream& f);
+	virtual void printTree();//ofstream& f);
+	virtual void searchNode(int item, bool& status);// , ofstream& f);
+	virtual void deleteItem(int item);// , ofstream& f);
+>>>>>>> tree-changes
 	int findHeight();
 	int getCountDeletes();
 	int getCountInserts();
@@ -319,12 +336,23 @@ Desc: calls internal print function
 Pre-condition :ofstream
 Post-condition : none
 */
+<<<<<<< HEAD
 void tree::printTree(/*ofstream& f*/)
 {
 	f << "---------------------------------------------------------------" << endl;
 	f << treeType << ':' << endl;
 	print(root, 0);
 	f << "---------------------------------------------------------------" << endl;
+=======
+void tree::printTree()//ofstream& f)
+{
+	cout << "---------------------------------------------------------------" << endl;
+	//f << "---------------------------------------------------------------" << endl;
+	//print(root, f, 0);
+	print(root, 0);
+	//f << "---------------------------------------------------------------" << endl;
+	cout << "---------------------------------------------------------------" << endl;
+>>>>>>> tree-changes
 }
 
 /*
@@ -332,8 +360,14 @@ Desc: prints
 Pre-condition :treeNode pointer, ofstream, integer
 Post-condition : none
 */
+<<<<<<< HEAD
 void tree::print(treeNode* p, int addSpaces)
 {
+=======
+void tree::print(treeNode* p, int addSpaces)//ofstream& f, int addSpaces)
+{
+	
+>>>>>>> tree-changes
 	if (root != NULL)
 	{
 		if (p->right != NULL)
@@ -343,22 +377,43 @@ void tree::print(treeNode* p, int addSpaces)
 
 		for (int i = 0; i < addSpaces; i++)
 		{
+<<<<<<< HEAD
 			f << " ";
+=======
+			//f << " ";
+			cout << " ";
+>>>>>>> tree-changes
 		}
+		/*
 		if (p->twin != NULL && p->numOfTwin > 1)
 		{
 			f << p->key << "(" << p->numOfTwin << ")" << endl;
 		}
 		else
 		{
+<<<<<<< HEAD
 			f << p->key << endl;
 		}
+=======
+		*/
+			//f << p->key << endl;
+			cout << p->key << endl;
+		//}
+>>>>>>> tree-changes
 
 		if (p->left != NULL)
 		{
 			print(p->left, addSpaces + 7);
+<<<<<<< HEAD
+=======
+			//print(p->left, f, addSpaces + 7);
+>>>>>>> tree-changes
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> tree-changes
 }
 
 /*
