@@ -63,6 +63,11 @@ namespace CIS376CompareTreesTermProject {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
+
+		//search click
+		//insert click
+		//function for file - calls print to file
+		
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify

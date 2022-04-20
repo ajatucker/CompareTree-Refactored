@@ -39,9 +39,9 @@ private:
 	*/
 	string treeType = "Splay Tree";
 
-	void insert(treeNode*& p, int item, vector<string>& s);
+	void insert(treeNode*& p, int item);//, vector<string>& s);
 	//void print(treeNode* p, int addSpaces, ofstream& f);
-	void search(treeNode*& p, int item, bool& status, vector<string>& s);
+	void search(treeNode*& p, int item, bool& status);//, vector<string>& s);
 	//void del(treeNode*& p, int item);
 	void deleteNode(treeNode*& p);
 	//void getPredecessor(treeNode* p, int& item);
@@ -49,18 +49,18 @@ private:
 	//int height(treeNode* p, int& h);
 	void zig(treeNode*& r);
 	void zag(treeNode*& r);
-	void zagZag(treeNode*& r);
-	void zigZig(treeNode*& r);
-	void zagZig(treeNode*& r);
-	void zigZag(treeNode*& r);
-	void splaying(treeNode*& p, int item, vector<string>& s, int& count);
+	//void zagZag(treeNode*& r);
+	//void zigZig(treeNode*& r);
+	//void zagZig(treeNode*& r);
+	//void zigZag(treeNode*& r);
+	void splaying(treeNode*& p, int item, int& count); //vector<string>& s,
 
 public:
 	splay();
-	void insertNode(int item);//, ofstream& f);
+	//void insertNode(int item);//, ofstream& f);
 	//void printTree(ofstream& f);
-	void searchNode(int item, bool& status); //, ofstream& f);
-	void deleteItem(int item); //ofstream& f);
+	//void searchNode(int item, bool& status); //, ofstream& f);
+	//void deleteItem(int item); //ofstream& f);
 	//int findHeight();
 	//int getCountDeletes();
 	//int getCountInserts();
@@ -120,7 +120,7 @@ Desc: splaying function that splays given root to node
 Pre-condition : treeNode pointer, 2 integers, string vector
 Post-condition : none
 */
-void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
+void splay::splaying(treeNode*& p, int item, int& count) //vector<string>& s,
 {
 	if (p == NULL || p->key == item)
 	{
@@ -140,27 +140,31 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		if (p->left->left != NULL && p->left->left->key == item)//p->left->key > item
 		{
 			count++;
-			s.push_back("zigzig");
+			//s.push_back("zigzig");
 			//cout << "zigzig" << endl;
-			splaying(p->left->left, item, s, count); //p->left
-			zigZig(p);
+			splaying(p->left->left, item, count); //p->left
+			//zigZig(p);
+			zig(p);
+			zig(p);
 		}
 		//}
 
 		else if (p->left->right != NULL && item > p->left->key) //p->left->key
 		{
 			count++;
-			s.push_back("zigzag");
+			//s.push_back("zigzag");
 			//cout << "zigzag" << endl;
-			zigZag(p);
+			//zigZag(p);
 			//zag(p->left);
 			//zig(p);
+			zag(p->left);
+			zig(p);
 		}
 
 		else if (root->left != NULL && root->left->key == item)//item < p->key && root->left->left == p)
 		{
 			count++;
-			s.push_back("zig");
+			//s.push_back("zig");
 			//cout << "zig " << endl;
 			zig(p);
 		}
@@ -181,9 +185,11 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		if (p->right->left != NULL && item < p->right->key)
 		{
 			count++;
-			s.push_back("zagzig");
+			//s.push_back("zagzig");
 			//cout << "zagzig" << endl;
-			zagZig(p);
+			//zagZig(p);
+			zag(p->left);
+			zig(p);
 			//zig(p->right);
 			//zag(p);
 		}
@@ -191,16 +197,18 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		else if (p->right->right != NULL && p->right->right->key == item)//p->right->key < item)  
 		{
 			count++;
-			s.push_back("zagzag");
+			//s.push_back("zagzag");
 			//cout << "zagzag" << endl;
-			splaying(p->right->right, item, s, count);
-			zagZag(p);
+			splaying(p->right->right, item, count);
+			//zagZag(p);
+			zag(p);
+			zag(p);
 		}
 
 		else if (root->right != NULL && root->right->key == item)//item > p->key && root->right->right == p) //p->right->key
 		{
 			count++;
-			s.push_back("zag");
+			//s.push_back("zag");
 			//cout << "zag " << endl;
 			zag(p);
 		}
@@ -217,6 +225,7 @@ Desc: insert node function that calls internal insert function
 Pre-condition : integer, ofstream
 Post-condition : none
 */
+/*
 void splay::insertNode(int item)//, ofstream& f)
 {
 	vector<string> rotate;
@@ -235,24 +244,26 @@ void splay::insertNode(int item)//, ofstream& f)
 		//cout << endl;
 	}
 }
+*/
 
 /*
 Desc: inserts a node at a leaf point
 Pre-condition : treeNode pointer, integer, string vector
 Post-condition : none
 */
-void splay::insert(treeNode*& p, int item, vector<string>& s)
+void splay::insert(treeNode*& p, int item)//, vector<string>& s)
 {
 	if (p == NULL)
 	{
 		p = new treeNode;
 		p->key = item;
-		p->twin = NULL;
-		p->numOfTwin = 1;
+		//p->twin = NULL;
+		//p->numOfTwin = 1;
 		p->right = NULL;
 		p->left = NULL;
 		return;
 	}
+	/*
 	else if (item == p->key)
 	{
 		p->numOfTwin++;
@@ -260,18 +271,19 @@ void splay::insert(treeNode*& p, int item, vector<string>& s)
 		insert(p->twin, item, s);
 		return;
 	}
+	*/
 	else if (item < p->key)
 	{
 		//countInsert++;
-		insert(p->left, item, s);
+		insert(p->left, item);//, s);
 	}
 	else
 	{
 		//countInsert++;
-		insert(p->right, item, s);
+		insert(p->right, item);// , s);
 	}
 
-	splaying(p, item, s, countInsert);
+	splaying(p, item, countInsert);
 }
 
 /*
@@ -279,22 +291,26 @@ Desc: splays the function for the zag zig case
 Pre-condition : treeNode pointer
 Post-condition : none
 */
+/*
 void splay::zagZig(treeNode*& r)
 {
 	zig(r->right);
 	zag(r);
 }
+*/
 
 /*
 Desc: splays the function for the zig zag case
 Pre-condition : treeNode pointer
 Post-condition : none
 */
+/*
 void splay::zigZag(treeNode*& r)
 {
 	zag(r->left);
 	zig(r);
 }
+*/
 
 /*
 Desc: splays the function for the zag case
@@ -335,28 +351,33 @@ Desc: splays the function for the zagzag zig case
 Pre-condition : treeNode pointer
 Post-condition : none
 */
+/*
 void splay::zagZag(treeNode*& r)
 {
 	zag(r);
 	zag(r);
 }
+*/
 
 /*
 Desc: splays the function for the zigzig case
 Pre-condition : treeNode pointer
 Post-condition : none
 */
+/*
 void splay::zigZig(treeNode*& r)
 {
 	zig(r);
 	zig(r);
 }
+*/
 
 /*
 Desc: search function that calls internal search function
 Pre-condition : integer, boolean, ofstream
 Post-condition : none
 */
+/*
 void splay::searchNode(int item, bool& status)//, ofstream& f)
 {
 	vector<string> rotate;
@@ -375,13 +396,14 @@ void splay::searchNode(int item, bool& status)//, ofstream& f)
 		//cout << endl;
 	}
 }
+*/
 
 /*
 Desc: searches for a node by splaying
 Pre-condition : treeNode pointer, integer, boolean, string vector
 Post-condition : none
 */
-void splay::search(treeNode*& p, int item, bool& status, vector<string>& s)
+void splay::search(treeNode*& p, int item, bool& status)//, vector<string>& s)
 {
 	if (p == NULL)
 	{
@@ -391,12 +413,12 @@ void splay::search(treeNode*& p, int item, bool& status, vector<string>& s)
 	else if (item < p->key)
 	{
 		//countSearch++;
-		search(p->left, item, status, s);
+		search(p->left, item, status);//, s);
 	}
 	else if (item > p->key)
 	{
 		//countSearch++;
-		search(p->right, item, status, s);
+		search(p->right, item, status);//, s);
 	}
 	else
 	{
@@ -405,14 +427,16 @@ void splay::search(treeNode*& p, int item, bool& status, vector<string>& s)
 		return;
 	}
 
-	splaying(p, item, s, countSearch);
+	splaying(p, item, countSearch);
 }
 
 /*
+* 
 Desc: splays item to root, delete function that calls internal search for delete function
 Pre-condition :integer
 Post-condition : none
 */
+/*
 void splay::deleteItem(int item)//, ofstream& f)
 {
 	vector<string> rotate;
@@ -432,6 +456,7 @@ void splay::deleteItem(int item)//, ofstream& f)
 		//cout << endl;
 	}
 }
+*/
 
 /*
 Desc: searches for where to delete
@@ -504,7 +529,7 @@ void splay::deleteNode(treeNode*& p)
 		treeNode* temp = p;
 		getPredecessor(temp, item); // p->right
 		p->key = temp->key;
-		p->twin = temp->twin;
+		//p->twin = temp->twin;
 		del(p->right, item);
 	}
 

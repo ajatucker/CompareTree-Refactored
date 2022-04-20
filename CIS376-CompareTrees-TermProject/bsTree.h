@@ -134,12 +134,13 @@ void bst::insert(treeNode*& p, int item)
 	{
 		p = new treeNode;
 		p->key = item;
-		p->numOfTwin = 1;
-		p->twin = NULL;
+		//p->numOfTwin = 1;
+		//p->twin = NULL;
 		p->right = NULL;
 		p->left = NULL;
 		return;
 	}
+	/*
 	else if (item == p->key)
 	{
 		//p->twin = new treeNode;
@@ -148,6 +149,7 @@ void bst::insert(treeNode*& p, int item)
 		insert(p->twin, item);
 		return;
 	}
+	*/
 	else if (item < p->key)
 	{
 		countInsert++;
@@ -232,6 +234,7 @@ void bst::del(treeNode*& p, int item)
 		countDelete++;
 		del(p->right, item);
 	}
+	/*
 	else if (item == p->key && p->numOfTwin > 1)
 	{
 		p->numOfTwin--;
@@ -245,6 +248,7 @@ void bst::del(treeNode*& p, int item)
 		//prev->twin = temp->twin;
 		//delete temp;
 	}
+	*/
 	else
 	{
 		deleteNode(p);
@@ -290,7 +294,7 @@ void bst::deleteNode(treeNode*& p)
 		treeNode* temp = p;
 		getPredecessor(temp, item); // p->right
 		p->key = temp->key;
-		p->twin = temp->twin;
+		//p->twin = temp->twin;
 		del(p->right, item);
 	}
 
@@ -348,16 +352,18 @@ void bst::print(treeNode* p, ofstream& f, int addSpaces)
 			f << " ";
 			cout << " ";
 		}
+		/*
 		if (p->twin != NULL && p->numOfTwin > 1)
 		{
 			f << p->key << "(" << p->numOfTwin << ")" << endl;
 			cout << p->key << "(" << p->numOfTwin << ")" << endl;
 		}
-		else
-		{
+		*/
+		//else
+		//{
 			f << p->key << endl;
 			cout << p->key << endl;
-		}
+		//}
 
 		if (p->left != NULL)
 		{
