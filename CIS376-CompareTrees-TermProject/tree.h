@@ -47,9 +47,10 @@ protected:
 	int countSearch;
 	int countDelete;
 	int countInsert;
+	ofstream f;
 
 	void insert(treeNode*& p, int item);
-	void print(treeNode* p, ofstream& f, int addSpaces);
+	void print(treeNode* p, /*ofstream& f,*/ int addSpaces);
 	void search(treeNode* p, int item, bool& status);
 	void del(treeNode*& p, int item);
 	void deleteNode(treeNode*& p);
@@ -59,18 +60,31 @@ protected:
 public:
 	tree();
 	void insertNode(int item);//, ofstream& f);
-	void printTree(ofstream& f);
+	void printTree(/*ofstream& f*/);
 	void searchNode(int item, bool& status);// , ofstream& f);
 	void deleteItem(int item);// , ofstream& f);
 	int findHeight();
 	int getCountDeletes();
 	int getCountInserts();
 	int getCountSearches();
+	void printToFile(tree& Tree, treeNode* inputNode, int addSpaces);			//IDK about the &
 };
 
 
 
 #endif
+
+void tree::printToFile(tree& Tree, treeNode* p, int addSpaces)
+{
+	Tree.printTree();
+	Tree.print(p, addSpaces);
+}
+
+
+
+
+
+
 
 tree::tree()
 {
@@ -312,13 +326,14 @@ Desc: calls internal print function
 Pre-condition :ofstream
 Post-condition : none
 */
-void tree::printTree(ofstream& f)
+void tree::printTree(/*ofstream& f*/)
 {
-	cout << "---------------------------------------------------------------" << endl;
+	/*cout << "---------------------------------------------------------------" << endl;*/
 	f << "---------------------------------------------------------------" << endl;
-	print(root, f, 0);
+	//f << "Inserts - " << countInsert << endl;
+	print(root, /*f,*/ 0);
 	f << "---------------------------------------------------------------" << endl;
-	cout << "---------------------------------------------------------------" << endl;
+	/*cout << "---------------------------------------------------------------" << endl;*/
 }
 
 /*
@@ -326,40 +341,37 @@ Desc: prints
 Pre-condition :treeNode pointer, ofstream, integer
 Post-condition : none
 */
-void tree::print(treeNode* p, ofstream& f, int addSpaces)
+void tree::print(treeNode* p, /*ofstream& f,*/ int addSpaces)
 {
-	/*
 	if (root != NULL)
 	{
-
 		if (p->right != NULL)
 		{
-			print(p->right, f, addSpaces + 7);
+			print(p->right, /*f,*/ addSpaces + 7);
 		}
 
 		for (int i = 0; i < addSpaces; i++)
 		{
 			f << " ";
-			cout << " ";
+			/*cout << " ";*/
 		}
+
 		if (p->twin != NULL && p->numOfTwin > 1)
 		{
 			f << p->key << "(" << p->numOfTwin << ")" << endl;
-			cout << p->key << "(" << p->numOfTwin << ")" << endl;
+			/*cout << p->key << "(" << p->numOfTwin << ")" << endl;*/
 		}
 		else
 		{
 			f << p->key << endl;
-			cout << p->key << endl;
+			/*cout << p->key << endl;*/
 		}
 
 		if (p->left != NULL)
 		{
-			print(p->left, f, addSpaces + 7);
+			print(p->left, /*f,*/ addSpaces + 7);
 		}
-
 	}
-	*/
 }
 
 /*
