@@ -32,7 +32,6 @@ namespace TreeTests
 			t->insertNode(1);
 			t->insertNode(3);
 			t->insertNode(4);
-			t->printTree();
 
 			Assert::AreEqual(t->findHeight(), 2);
 		}
@@ -44,9 +43,8 @@ namespace TreeTests
 			t->insertNode(1);
 			t->insertNode(3);
 			t->insertNode(4);
-			t->printTree();
 
-			Assert::AreEqual(t->findHeight(), 2);
+			Assert::AreEqual(t->findHeight(), 1);
 		}
 
 
@@ -56,12 +54,11 @@ namespace TreeTests
 			t->insertNode(1);
 			t->insertNode(3);
 			t->insertNode(4);
-			t->printTree();
 
 			Assert::AreEqual(t->findHeight(), 2);
 		}
 
-		TEST_METHOD(testInsertDelete)
+		TEST_METHOD(testSplayDelete)
 		{
 			tree* t = new splay();
 			t->insertNode(1);
@@ -71,6 +68,7 @@ namespace TreeTests
 			t->deleteItem(1);
 			t->deleteItem(3);
 			t->deleteItem(4);
+			t->deleteItem(5);
 
 			bool stat = false;
 			t->searchNode(4, stat);
@@ -87,6 +85,7 @@ namespace TreeTests
 			t->deleteItem(1);
 			t->deleteItem(3);
 			t->deleteItem(4);
+			t->deleteItem(5);
 
 			bool stat = false;
 			t->searchNode(4, stat);
@@ -103,6 +102,7 @@ namespace TreeTests
 			t->deleteItem(1);
 			t->deleteItem(3);
 			t->deleteItem(4);
+			t->deleteItem(5);
 
 			bool stat = false;
 			t->searchNode(4, stat);
@@ -154,29 +154,6 @@ namespace TreeTests
 
 			Assert::AreEqual(t->findHeight(), 2);
 		}
-
-		TEST_METHOD(testSame)
-		{
-			tree* t = new splay();
-			t->insertNode(0);
-			t->insertNode(0);
-			t->insertNode(0);
-
-			Assert::AreEqual(t->findHeight(), 2);
-		}
-		/*
-		TEST_METHOD(testTreeInvalid)
-		{
-			tree* t = new splay();
-			int a;
-			int b;
-			int c;
-			t->insertNode(a);
-			t->insertNode(b);
-			t->insertNode(c);
-
-			Assert::IsNotNull(t);
-		}
-		*/
+		
 	};
 }

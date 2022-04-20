@@ -48,20 +48,20 @@ protected:
 	int countDelete;
 	int countInsert;
 
-	void insert(treeNode*& p, int item);
-	void print(treeNode* p, int addSpaces);//ofstream& f, int addSpaces);
-	void search(treeNode* p, int item, bool& status);
-	void del(treeNode*& p, int item);
-	void deleteNode(treeNode*& p);
-	void getPredecessor(treeNode* p, int& item);
-	void destroy(treeNode*& p);
-	int height(treeNode* p, int& h);
+	virtual void insert(treeNode*& p, int item);
+	virtual void print(treeNode* p, int addSpaces);//ofstream& f, int addSpaces);
+	virtual void search(treeNode* p, int item, bool& status);
+	virtual void del(treeNode*& p, int item);
+	virtual void deleteNode(treeNode*& p);
+	virtual void getPredecessor(treeNode* p, int& item);
+	virtual void destroy(treeNode*& p);
+	virtual int height(treeNode* p, int& h);
 public:
 	tree();
-	void insertNode(int item);//, ofstream& f);
-	void printTree();//ofstream& f);
-	void searchNode(int item, bool& status);// , ofstream& f);
-	void deleteItem(int item);// , ofstream& f);
+	virtual void insertNode(int item);//, ofstream& f);
+	virtual void printTree();//ofstream& f);
+	virtual void searchNode(int item, bool& status);// , ofstream& f);
+	virtual void deleteItem(int item);// , ofstream& f);
 	int findHeight();
 	int getCountDeletes();
 	int getCountInserts();

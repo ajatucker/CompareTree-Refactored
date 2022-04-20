@@ -38,9 +38,9 @@ private:
 	int countInsert;
 	*/
 
-	void insert(treeNode*& p, int item, vector<string>& s);
+	void insert(treeNode*& p, int item);//, vector<string>& s);
 	//void print(treeNode* p, int addSpaces, ofstream& f);
-	void search(treeNode*& p, int item, bool& status, vector<string>& s);
+	void search(treeNode*& p, int item, bool& status);//, vector<string>& s);
 	//void del(treeNode*& p, int item);
 	void deleteNode(treeNode*& p);
 	//void getPredecessor(treeNode* p, int& item);
@@ -52,7 +52,7 @@ private:
 	//void zigZig(treeNode*& r);
 	//void zagZig(treeNode*& r);
 	//void zigZag(treeNode*& r);
-	void splaying(treeNode*& p, int item, vector<string>& s, int& count);
+	void splaying(treeNode*& p, int item, int& count); //vector<string>& s,
 
 public:
 	splay();
@@ -119,7 +119,7 @@ Desc: splaying function that splays given root to node
 Pre-condition : treeNode pointer, 2 integers, string vector
 Post-condition : none
 */
-void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
+void splay::splaying(treeNode*& p, int item, int& count) //vector<string>& s,
 {
 	if (p == NULL || p->key == item)
 	{
@@ -139,9 +139,9 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		if (p->left->left != NULL && p->left->left->key == item)//p->left->key > item
 		{
 			count++;
-			s.push_back("zigzig");
+			//s.push_back("zigzig");
 			//cout << "zigzig" << endl;
-			splaying(p->left->left, item, s, count); //p->left
+			splaying(p->left->left, item, count); //p->left
 			//zigZig(p);
 			zig(p);
 			zig(p);
@@ -151,7 +151,7 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		else if (p->left->right != NULL && item > p->left->key) //p->left->key
 		{
 			count++;
-			s.push_back("zigzag");
+			//s.push_back("zigzag");
 			//cout << "zigzag" << endl;
 			//zigZag(p);
 			//zag(p->left);
@@ -163,7 +163,7 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		else if (root->left != NULL && root->left->key == item)//item < p->key && root->left->left == p)
 		{
 			count++;
-			s.push_back("zig");
+			//s.push_back("zig");
 			//cout << "zig " << endl;
 			zig(p);
 		}
@@ -184,7 +184,7 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		if (p->right->left != NULL && item < p->right->key)
 		{
 			count++;
-			s.push_back("zagzig");
+			//s.push_back("zagzig");
 			//cout << "zagzig" << endl;
 			//zagZig(p);
 			zag(p->left);
@@ -196,9 +196,9 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		else if (p->right->right != NULL && p->right->right->key == item)//p->right->key < item)  
 		{
 			count++;
-			s.push_back("zagzag");
+			//s.push_back("zagzag");
 			//cout << "zagzag" << endl;
-			splaying(p->right->right, item, s, count);
+			splaying(p->right->right, item, count);
 			//zagZag(p);
 			zag(p);
 			zag(p);
@@ -207,7 +207,7 @@ void splay::splaying(treeNode*& p, int item, vector<string>& s, int& count)
 		else if (root->right != NULL && root->right->key == item)//item > p->key && root->right->right == p) //p->right->key
 		{
 			count++;
-			s.push_back("zag");
+			//s.push_back("zag");
 			//cout << "zag " << endl;
 			zag(p);
 		}
@@ -250,7 +250,7 @@ Desc: inserts a node at a leaf point
 Pre-condition : treeNode pointer, integer, string vector
 Post-condition : none
 */
-void splay::insert(treeNode*& p, int item, vector<string>& s)
+void splay::insert(treeNode*& p, int item)//, vector<string>& s)
 {
 	if (p == NULL)
 	{
@@ -274,15 +274,15 @@ void splay::insert(treeNode*& p, int item, vector<string>& s)
 	else if (item < p->key)
 	{
 		//countInsert++;
-		insert(p->left, item, s);
+		insert(p->left, item);//, s);
 	}
 	else
 	{
 		//countInsert++;
-		insert(p->right, item, s);
+		insert(p->right, item);// , s);
 	}
 
-	splaying(p, item, s, countInsert);
+	splaying(p, item, countInsert);
 }
 
 /*
@@ -402,7 +402,7 @@ Desc: searches for a node by splaying
 Pre-condition : treeNode pointer, integer, boolean, string vector
 Post-condition : none
 */
-void splay::search(treeNode*& p, int item, bool& status, vector<string>& s)
+void splay::search(treeNode*& p, int item, bool& status)//, vector<string>& s)
 {
 	if (p == NULL)
 	{
@@ -412,12 +412,12 @@ void splay::search(treeNode*& p, int item, bool& status, vector<string>& s)
 	else if (item < p->key)
 	{
 		//countSearch++;
-		search(p->left, item, status, s);
+		search(p->left, item, status);//, s);
 	}
 	else if (item > p->key)
 	{
 		//countSearch++;
-		search(p->right, item, status, s);
+		search(p->right, item, status);//, s);
 	}
 	else
 	{
@@ -426,7 +426,7 @@ void splay::search(treeNode*& p, int item, bool& status, vector<string>& s)
 		return;
 	}
 
-	splaying(p, item, s, countSearch);
+	splaying(p, item, countSearch);
 }
 
 /*

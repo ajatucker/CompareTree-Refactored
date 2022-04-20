@@ -30,12 +30,13 @@ protected:
 	//int countInsert;
 	
 
-	void insert(treeNode*& p, int item, vector<string>& s);
+	void insert(treeNode*& p, int item);//, vector<string>& s);
 	//void print(treeNode* p, ofstream& f, int addSpaces);
 	void search(treeNode* p, int item, bool& status);
 	//void del(treeNode*& p, int item, vector<string>& s);
 	void deleteNode(treeNode*& p, vector<string>& s);
 	//void getPredecessor(treeNode* p, int& item);
+	int getHeight(treeNode* p);
 	//void destroy(treeNode*& p);
 	int getBalance(treeNode* p);
 	void rotateRight(treeNode*& r); //change
@@ -44,11 +45,10 @@ protected:
 	void rotateRightLeft(treeNode*& r); //just have right/left 
 	void doubleRotateRight(treeNode*& r); //just have right/left
 	void doubleRotateLeft(treeNode*& r); //just have right/left
-	void balancing(treeNode*& p, int balance, int& item, vector<string>& s, int& count);
+	void balancing(treeNode*& p, int balance, int& item, int& count); //vector<string>& s
 
 public:
 	avl();
-	int getHeight(treeNode* p);
 	//void insertNode(int item, ofstream& f);
 	//void printTree(ofstream& f);
 	//void searchNode(int item, bool& status);
@@ -138,7 +138,7 @@ Desc: inserts a node at a leaf point
 Pre-condition : treeNode pointer, integer, string vector
 Post-condition : none
 */
-void avl::insert(treeNode*& p, int item, vector<string>& s)
+void avl::insert(treeNode*& p, int item)//, vector<string>& s)
 {
 	if (p == NULL)
 	{
@@ -163,12 +163,12 @@ void avl::insert(treeNode*& p, int item, vector<string>& s)
 	else if (item < p->key)
 	{
 		countInsert++;
-		insert(p->left, item, s);
+		insert(p->left, item);//, s);
 	}
 	else
 	{
 		countInsert++;
-		insert(p->right, item, s);
+		insert(p->right, item);//, s);
 	}
 
 	p->height = max(getHeight(p->left), getHeight(p->right)) + 1;
@@ -178,7 +178,7 @@ void avl::insert(treeNode*& p, int item, vector<string>& s)
 	if (balance < -1 || balance > 1)
 	{
 
-		balancing(p, balance, item, s, countInsert);
+		balancing(p, balance, item, countInsert);
 	}
 
 }
@@ -188,7 +188,7 @@ Desc: balances the tree given in proper avl format
 Pre-condition : treeNode pointer, 3 integers, string vector
 Post-condition : none
 */
-void avl::balancing(treeNode*& p, int balance, int& item, vector<string>& s, int& count)
+void avl::balancing(treeNode*& p, int balance, int& item, int& count) //vector<string>& s,
 {
 	if (balance > 1 && item < p->left->key)
 	{
@@ -196,12 +196,12 @@ void avl::balancing(treeNode*& p, int balance, int& item, vector<string>& s, int
 		{
 			count++;
 			doubleRotateLeft(p);
-			s.push_back("LL");
+			//s.push_back("LL");
 		}
 		else
 		{
 			count++;
-			s.push_back("L");
+			//s.push_back("L");
 			rotateLeft(p);
 		}
 	}
@@ -211,13 +211,13 @@ void avl::balancing(treeNode*& p, int balance, int& item, vector<string>& s, int
 		if (root->right->right == p)
 		{
 			count++;
-			s.push_back("RR");
+			//s.push_back("RR");
 			doubleRotateRight(p);
 		}
 		else
 		{
 			count++;
-			s.push_back("R");
+			//s.push_back("R");
 			rotateRight(p);
 		}
 	}
@@ -225,14 +225,14 @@ void avl::balancing(treeNode*& p, int balance, int& item, vector<string>& s, int
 	if (balance > 1 && item > p->left->key)
 	{
 		count++;
-		s.push_back("RL");
+		//s.push_back("RL");
 		rotateRightLeft(p);
 	}
 
 	if (balance < -1 && item < p->right->key)
 	{
 		count++;
-		s.push_back("LR");
+		//s.push_back("LR");
 		rotateLeftRight(p);
 	}
 }
@@ -476,7 +476,7 @@ void avl::deleteNode(treeNode*& p, vector<string>& s)
 
 	if (balance < -1 || balance > 1)
 	{
-		balancing(p, balance, item, s, countDelete);
+		balancing(p, balance, item, countDelete);
 	}
 
 	//return;
