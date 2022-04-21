@@ -2,7 +2,6 @@
 #include "CppUnitTest.h"
 #include "../CIS376-CompareTrees-TermProject/tree.h"
 #include "../CIS376-CompareTrees-TermProject/avlTree.h"
-#include "../CIS376-CompareTrees-TermProject/bsTree.h"
 #include "../CIS376-CompareTrees-TermProject/splayTree.h"
 
 using std::string;

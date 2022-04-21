@@ -26,9 +26,6 @@
     <ClInclude Include="avlTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bsTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="splayTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
