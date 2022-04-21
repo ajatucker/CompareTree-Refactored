@@ -47,11 +47,11 @@ protected:
 	int countSearch;
 	int countDelete;
 	int countInsert;
-	ofstream f;
+	//const string filename = "TreeLogFile.txt";
 	string treeType;
 
 	virtual void insert(treeNode*& p, int item);
-	virtual void print(treeNode* p, int addSpaces);//ofstream& f, int addSpaces);
+	virtual void print(treeNode* p, ofstream& f, int addSpaces);//ofstream& f, int addSpaces);
 	virtual void search(treeNode* p, int item, bool& status);
 	virtual void del(treeNode*& p, int item);
 	virtual void deleteNode(treeNode*& p);
@@ -62,7 +62,7 @@ protected:
 public:
 	tree();
 	virtual void insertNode(int item);//, ofstream& f);
-	virtual void printTree();//ofstream& f);
+	virtual void printTree(ofstream& f);
 	virtual void searchNode(int item, bool& status);// , ofstream& f);
 	virtual void deleteItem(int item);// , ofstream& f);
 	int findHeight();
@@ -82,6 +82,7 @@ tree::tree()
 	countSearch = 0;
 	countDelete = 0;
 	countInsert = 0;
+	treeType = "Binary Search Tree";
 }
 
 int tree::getCountDeletes()
@@ -316,14 +317,14 @@ void tree::getPredecessor(treeNode* p, int& item)
 }
 
 
-void tree::printTree()//ofstream& f)
+void tree::printTree(ofstream& f)
 {
-	cout << "---------------------------------------------------------------" << endl;
-	//f << "---------------------------------------------------------------" << endl;
-	//print(root, f, 0);
-	print(root, 0);
-	//f << "---------------------------------------------------------------" << endl;
-	cout << "---------------------------------------------------------------" << endl;
+	//f.open(filename, std::ios_base::app);
+
+	f << "---------------------------------------------------------------" << endl;
+	f << treeType << ':' << endl;
+	print(root, f, 0);
+	f << "---------------------------------------------------------------" << endl;
 }
 
 /*
@@ -331,14 +332,14 @@ Desc: prints
 Pre-condition :treeNode pointer, ofstream, integer
 Post-condition : none
 */
-void tree::print(treeNode* p, int addSpaces)//ofstream& f, int addSpaces)
+void tree::print(treeNode* p, ofstream& f, int addSpaces)//ofstream& f, int addSpaces)
 {
 	
 	if (root != NULL)
 	{
 		if (p->right != NULL)
 		{
-			print(p->right, addSpaces + 7);
+			print(p->right, f, addSpaces + 7);
 		}
 
 		for (int i = 0; i < addSpaces; i++)
@@ -359,14 +360,13 @@ void tree::print(treeNode* p, int addSpaces)//ofstream& f, int addSpaces)
 		}
 =======
 		*/
-			//f << p->key << endl;
-			cout << p->key << endl;
+			f << p->key << endl;
 		//}
 
 		if (p->left != NULL)
 		{
-			print(p->left, addSpaces + 7);
-			//print(p->left, f, addSpaces + 7);
+			//print(p->left, addSpaces + 7);
+			print(p->left, f, addSpaces + 7);
 
 		}
 	}

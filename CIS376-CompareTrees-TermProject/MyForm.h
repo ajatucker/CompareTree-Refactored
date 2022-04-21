@@ -26,9 +26,13 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+#include <fstream>
+using std::ofstream;
 
 namespace CIS376CompareTreesTermProject {
 
+	ofstream f;
+	const string filename = "TreeLogFile.txt";
 
 	/// <summary>
 	/// Summary for MyForm
@@ -49,6 +53,7 @@ namespace CIS376CompareTreesTermProject {
 		tree* bst = new tree();
 		tree* a = new avl();
 		tree* spl = new splay();
+
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -328,6 +333,12 @@ namespace CIS376CompareTreesTermProject {
 		label1->Text = "Insert: " + System::Convert::ToString(a->getCountInserts());
 		label4->Text = "Insert: " + System::Convert::ToString(bst->getCountInserts());
 		label7->Text = "Insert: " + System::Convert::ToString(spl->getCountInserts());
+		
+		f.open(filename, std::ios_base::out);
+		a->printTree(f);
+		spl->printTree(f);
+		bst->printTree(f);
+		f.close();
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int insertNum = 0;
@@ -335,9 +346,9 @@ namespace CIS376CompareTreesTermProject {
 		a->insertNode(insertNum);
 		spl->insertNode(insertNum);
 		bst->insertNode(insertNum);
-		label2->Text = "Search: " + System::Convert::ToString(a->getCountInserts());
-		label5->Text = "Search: " + System::Convert::ToString(bst->getCountInserts());
-		label8->Text = "Search: " + System::Convert::ToString(spl->getCountInserts());
+		label2->Text = "Search: " + System::Convert::ToString(a->getCountSearches());
+		label5->Text = "Search: " + System::Convert::ToString(bst->getCountSearches());
+		label8->Text = "Search: " + System::Convert::ToString(spl->getCountSearches());
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		int insertNum = 0;
@@ -345,9 +356,15 @@ namespace CIS376CompareTreesTermProject {
 		a->insertNode(insertNum);
 		spl->insertNode(insertNum);
 		bst->insertNode(insertNum);
-		label3->Text = "Delete: " + System::Convert::ToString(a->getCountInserts());
-		label6->Text = "Delete: " + System::Convert::ToString(bst->getCountInserts());
-		label9->Text = "Delete: " + System::Convert::ToString(spl->getCountInserts());
+		label3->Text = "Delete: " + System::Convert::ToString(a->getCountDeletes());
+		label6->Text = "Delete: " + System::Convert::ToString(bst->getCountDeletes());
+		label9->Text = "Delete: " + System::Convert::ToString(spl->getCountDeletes());
+
+		f.open(filename, std::ios_base::out);
+		a->printTree(f);
+		spl->printTree(f);
+		bst->printTree(f);
+		f.close();
 	}
 
 };

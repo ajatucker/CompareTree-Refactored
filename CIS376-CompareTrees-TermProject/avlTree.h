@@ -28,7 +28,6 @@ protected:
 	//int countSearch;
 	//int countDelete;
 	//int countInsert;
-	string treeType = "AVL Tree";
 
 	void insert(treeNode*& p, int item);//, vector<string>& s);
 	//void print(treeNode* p, ofstream& f, int addSpaces);
@@ -69,6 +68,7 @@ avl::avl()
 	countSearch = 0;
 	countDelete = 0;
 	countInsert = 0;
+	treeType = "AVL Tree";
 }
 
 /*
@@ -517,7 +517,7 @@ void avl::printTree(ofstream& f)
 */
 
 /*
-Desc: prints
+Desc: printfs
 Pre-condition :treeNode pointer, ofstream, integer
 Post-condition : none
 */

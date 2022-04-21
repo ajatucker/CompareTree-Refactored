@@ -37,7 +37,6 @@ private:
 	int countDelete;
 	int countInsert;
 	*/
-	string treeType = "Splay Tree";
 
 	void insert(treeNode*& p, int item);//, vector<string>& s);
 	//void print(treeNode* p, int addSpaces, ofstream& f);
@@ -77,6 +76,7 @@ splay::splay()
 	countSearch = 0;
 	countDelete = 0;
 	countInsert = 0;
+	treeType = "Splay Tree";
 }
 
 /*
