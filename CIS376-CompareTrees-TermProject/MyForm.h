@@ -34,18 +34,12 @@ namespace CIS376CompareTreesTermProject {
 	ofstream f;
 	const string filename = "TreeLogFile.txt";
 
-	/// <summary>
-	/// Summary for MyForm
-	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 
 		}
 
@@ -54,9 +48,6 @@ namespace CIS376CompareTreesTermProject {
 		tree* a = new avl();
 		tree* spl = new splay();
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		~MyForm()
 		{
 			if (components)
@@ -64,24 +55,40 @@ namespace CIS376CompareTreesTermProject {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ delete_btn;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::Button^ Insertbutton;
+	private: System::Windows::Forms::Button^ Searchbutton;
+	private: System::Windows::Forms::Button^ Deletebutton;
+	private: System::Windows::Forms::TextBox^ InserttextBox;
+	private: System::Windows::Forms::TextBox^ SearchtextBox;
+	private: System::Windows::Forms::TextBox^ DeletetextBox;
+	protected:
+
+
+
+
+
+
 	private: System::Windows::Forms::GroupBox^ groupBox1;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ AVLInsertlabel;
+	private: System::Windows::Forms::Label^ AVLDeletelabel;
+
+
+	private: System::Windows::Forms::Label^ AVLSearchlabel;
+
 	private: System::Windows::Forms::GroupBox^ groupBox2;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ BSTInsertlabel;
+	private: System::Windows::Forms::Label^ BSTDeletelabel;
+
+
+	private: System::Windows::Forms::Label^ BSTSearchlabel;
+
 	private: System::Windows::Forms::GroupBox^ groupBox3;
-	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::Label^ SplayInsertlabel;
+	private: System::Windows::Forms::Label^ SplaySearchlabel;
+	private: System::Windows::Forms::Label^ SplayDeletelabel;
+
+
+
 
 	protected:
 
@@ -105,212 +112,232 @@ namespace CIS376CompareTreesTermProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->delete_btn = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->Insertbutton = (gcnew System::Windows::Forms::Button());
+			this->Searchbutton = (gcnew System::Windows::Forms::Button());
+			this->Deletebutton = (gcnew System::Windows::Forms::Button());
+			this->InserttextBox = (gcnew System::Windows::Forms::TextBox());
+			this->SearchtextBox = (gcnew System::Windows::Forms::TextBox());
+			this->DeletetextBox = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->AVLDeletelabel = (gcnew System::Windows::Forms::Label());
+			this->AVLSearchlabel = (gcnew System::Windows::Forms::Label());
+			this->AVLInsertlabel = (gcnew System::Windows::Forms::Label());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->BSTDeletelabel = (gcnew System::Windows::Forms::Label());
+			this->BSTSearchlabel = (gcnew System::Windows::Forms::Label());
+			this->BSTInsertlabel = (gcnew System::Windows::Forms::Label());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
-			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->SplayDeletelabel = (gcnew System::Windows::Forms::Label());
+			this->SplayInsertlabel = (gcnew System::Windows::Forms::Label());
+			this->SplaySearchlabel = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// button1
+			// Insertbutton
 			// 
-			this->button1->Location = System::Drawing::Point(12, 342);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(154, 60);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"Insert";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->Insertbutton->Location = System::Drawing::Point(8, 222);
+			this->Insertbutton->Margin = System::Windows::Forms::Padding(2);
+			this->Insertbutton->Name = L"Insertbutton";
+			this->Insertbutton->Size = System::Drawing::Size(103, 39);
+			this->Insertbutton->TabIndex = 0;
+			this->Insertbutton->Text = L"Insert";
+			this->Insertbutton->UseVisualStyleBackColor = true;
+			this->Insertbutton->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
-			// button2
+			// Searchbutton
 			// 
-			this->button2->Location = System::Drawing::Point(172, 342);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(154, 60);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"Search";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			this->Searchbutton->Location = System::Drawing::Point(115, 222);
+			this->Searchbutton->Margin = System::Windows::Forms::Padding(2);
+			this->Searchbutton->Name = L"Searchbutton";
+			this->Searchbutton->Size = System::Drawing::Size(103, 39);
+			this->Searchbutton->TabIndex = 1;
+			this->Searchbutton->Text = L"Search";
+			this->Searchbutton->UseVisualStyleBackColor = true;
+			this->Searchbutton->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
-			// delete_btn
+			// Deletebutton
 			// 
-			this->delete_btn->Location = System::Drawing::Point(332, 341);
-			this->delete_btn->Name = L"delete_btn";
-			this->delete_btn->Size = System::Drawing::Size(154, 60);
-			this->delete_btn->TabIndex = 2;
-			this->delete_btn->Text = L"Delete";
-			this->delete_btn->UseVisualStyleBackColor = true;
-			this->delete_btn->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			this->Deletebutton->Location = System::Drawing::Point(221, 222);
+			this->Deletebutton->Margin = System::Windows::Forms::Padding(2);
+			this->Deletebutton->Name = L"Deletebutton";
+			this->Deletebutton->Size = System::Drawing::Size(103, 39);
+			this->Deletebutton->TabIndex = 2;
+			this->Deletebutton->Text = L"Delete";
+			this->Deletebutton->UseVisualStyleBackColor = true;
+			this->Deletebutton->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
-			// textBox1
+			// InserttextBox
 			// 
-			this->textBox1->Location = System::Drawing::Point(12, 310);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(154, 26);
-			this->textBox1->TabIndex = 3;
+			this->InserttextBox->Location = System::Drawing::Point(8, 201);
+			this->InserttextBox->Margin = System::Windows::Forms::Padding(2);
+			this->InserttextBox->Name = L"InserttextBox";
+			this->InserttextBox->Size = System::Drawing::Size(104, 20);
+			this->InserttextBox->TabIndex = 3;
 			// 
-			// textBox2
+			// SearchtextBox
 			// 
-			this->textBox2->Location = System::Drawing::Point(172, 310);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(154, 26);
-			this->textBox2->TabIndex = 4;
+			this->SearchtextBox->Location = System::Drawing::Point(115, 201);
+			this->SearchtextBox->Margin = System::Windows::Forms::Padding(2);
+			this->SearchtextBox->Name = L"SearchtextBox";
+			this->SearchtextBox->Size = System::Drawing::Size(104, 20);
+			this->SearchtextBox->TabIndex = 4;
 			// 
-			// textBox3
+			// DeletetextBox
 			// 
-			this->textBox3->Location = System::Drawing::Point(332, 309);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(154, 26);
-			this->textBox3->TabIndex = 5;
+			this->DeletetextBox->Location = System::Drawing::Point(221, 201);
+			this->DeletetextBox->Margin = System::Windows::Forms::Padding(2);
+			this->DeletetextBox->Name = L"DeletetextBox";
+			this->DeletetextBox->Size = System::Drawing::Size(104, 20);
+			this->DeletetextBox->TabIndex = 5;
 			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->label3);
-			this->groupBox1->Controls->Add(this->label2);
-			this->groupBox1->Controls->Add(this->label1);
-			this->groupBox1->Location = System::Drawing::Point(12, 56);
+			this->groupBox1->Controls->Add(this->AVLDeletelabel);
+			this->groupBox1->Controls->Add(this->AVLSearchlabel);
+			this->groupBox1->Controls->Add(this->AVLInsertlabel);
+			this->groupBox1->Location = System::Drawing::Point(8, 36);
+			this->groupBox1->Margin = System::Windows::Forms::Padding(2);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(154, 148);
+			this->groupBox1->Padding = System::Windows::Forms::Padding(2);
+			this->groupBox1->Size = System::Drawing::Size(103, 96);
 			this->groupBox1->TabIndex = 6;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"AVL Tree";
 			// 
-			// label3
+			// AVLDeletelabel
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(6, 83);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(60, 20);
-			this->label3->TabIndex = 9;
-			this->label3->Text = L"Delete:";
+			this->AVLDeletelabel->AutoSize = true;
+			this->AVLDeletelabel->Location = System::Drawing::Point(4, 54);
+			this->AVLDeletelabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->AVLDeletelabel->Name = L"AVLDeletelabel";
+			this->AVLDeletelabel->Size = System::Drawing::Size(41, 13);
+			this->AVLDeletelabel->TabIndex = 9;
+			this->AVLDeletelabel->Text = L"Delete:";
 			// 
-			// label2
+			// AVLSearchlabel
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(6, 63);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(64, 20);
-			this->label2->TabIndex = 8;
-			this->label2->Text = L"Search:";
+			this->AVLSearchlabel->AutoSize = true;
+			this->AVLSearchlabel->Location = System::Drawing::Point(4, 41);
+			this->AVLSearchlabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->AVLSearchlabel->Name = L"AVLSearchlabel";
+			this->AVLSearchlabel->Size = System::Drawing::Size(44, 13);
+			this->AVLSearchlabel->TabIndex = 8;
+			this->AVLSearchlabel->Text = L"Search:";
 			// 
-			// label1
+			// AVLInsertlabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(6, 43);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(54, 20);
-			this->label1->TabIndex = 7;
-			this->label1->Text = L"Insert:";
+			this->AVLInsertlabel->AutoSize = true;
+			this->AVLInsertlabel->Location = System::Drawing::Point(4, 28);
+			this->AVLInsertlabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->AVLInsertlabel->Name = L"AVLInsertlabel";
+			this->AVLInsertlabel->Size = System::Drawing::Size(36, 13);
+			this->AVLInsertlabel->TabIndex = 7;
+			this->AVLInsertlabel->Text = L"Insert:";
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->label6);
-			this->groupBox2->Controls->Add(this->label5);
-			this->groupBox2->Controls->Add(this->label4);
-			this->groupBox2->Location = System::Drawing::Point(172, 56);
+			this->groupBox2->Controls->Add(this->BSTDeletelabel);
+			this->groupBox2->Controls->Add(this->BSTSearchlabel);
+			this->groupBox2->Controls->Add(this->BSTInsertlabel);
+			this->groupBox2->Location = System::Drawing::Point(115, 36);
+			this->groupBox2->Margin = System::Windows::Forms::Padding(2);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(154, 148);
+			this->groupBox2->Padding = System::Windows::Forms::Padding(2);
+			this->groupBox2->Size = System::Drawing::Size(103, 96);
 			this->groupBox2->TabIndex = 7;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"BST";
 			// 
-			// label6
+			// BSTDeletelabel
 			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(6, 83);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(60, 20);
-			this->label6->TabIndex = 2;
-			this->label6->Text = L"Delete:";
+			this->BSTDeletelabel->AutoSize = true;
+			this->BSTDeletelabel->Location = System::Drawing::Point(4, 54);
+			this->BSTDeletelabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->BSTDeletelabel->Name = L"BSTDeletelabel";
+			this->BSTDeletelabel->Size = System::Drawing::Size(41, 13);
+			this->BSTDeletelabel->TabIndex = 2;
+			this->BSTDeletelabel->Text = L"Delete:";
 			// 
-			// label5
+			// BSTSearchlabel
 			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(6, 63);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(64, 20);
-			this->label5->TabIndex = 1;
-			this->label5->Text = L"Search:";
+			this->BSTSearchlabel->AutoSize = true;
+			this->BSTSearchlabel->Location = System::Drawing::Point(4, 41);
+			this->BSTSearchlabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->BSTSearchlabel->Name = L"BSTSearchlabel";
+			this->BSTSearchlabel->Size = System::Drawing::Size(44, 13);
+			this->BSTSearchlabel->TabIndex = 1;
+			this->BSTSearchlabel->Text = L"Search:";
 			// 
-			// label4
+			// BSTInsertlabel
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(6, 43);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(54, 20);
-			this->label4->TabIndex = 0;
-			this->label4->Text = L"Insert:";
+			this->BSTInsertlabel->AutoSize = true;
+			this->BSTInsertlabel->Location = System::Drawing::Point(4, 28);
+			this->BSTInsertlabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->BSTInsertlabel->Name = L"BSTInsertlabel";
+			this->BSTInsertlabel->Size = System::Drawing::Size(36, 13);
+			this->BSTInsertlabel->TabIndex = 0;
+			this->BSTInsertlabel->Text = L"Insert:";
 			// 
 			// groupBox3
 			// 
-			this->groupBox3->Controls->Add(this->label9);
-			this->groupBox3->Controls->Add(this->label7);
-			this->groupBox3->Controls->Add(this->label8);
-			this->groupBox3->Location = System::Drawing::Point(332, 56);
+			this->groupBox3->Controls->Add(this->SplayDeletelabel);
+			this->groupBox3->Controls->Add(this->SplayInsertlabel);
+			this->groupBox3->Controls->Add(this->SplaySearchlabel);
+			this->groupBox3->Location = System::Drawing::Point(221, 36);
+			this->groupBox3->Margin = System::Windows::Forms::Padding(2);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(154, 148);
+			this->groupBox3->Padding = System::Windows::Forms::Padding(2);
+			this->groupBox3->Size = System::Drawing::Size(103, 96);
 			this->groupBox3->TabIndex = 8;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Splay";
 			// 
-			// label9
+			// SplayDeletelabel
 			// 
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(6, 80);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(60, 20);
-			this->label9->TabIndex = 10;
-			this->label9->Text = L"Delete:";
+			this->SplayDeletelabel->AutoSize = true;
+			this->SplayDeletelabel->Location = System::Drawing::Point(4, 52);
+			this->SplayDeletelabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->SplayDeletelabel->Name = L"SplayDeletelabel";
+			this->SplayDeletelabel->Size = System::Drawing::Size(41, 13);
+			this->SplayDeletelabel->TabIndex = 10;
+			this->SplayDeletelabel->Text = L"Delete:";
 			// 
-			// label7
+			// SplayInsertlabel
 			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(7, 39);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(54, 20);
-			this->label7->TabIndex = 0;
-			this->label7->Text = L"Insert:";
+			this->SplayInsertlabel->AutoSize = true;
+			this->SplayInsertlabel->Location = System::Drawing::Point(5, 25);
+			this->SplayInsertlabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->SplayInsertlabel->Name = L"SplayInsertlabel";
+			this->SplayInsertlabel->Size = System::Drawing::Size(36, 13);
+			this->SplayInsertlabel->TabIndex = 0;
+			this->SplayInsertlabel->Text = L"Insert:";
 			// 
-			// label8
+			// SplaySearchlabel
 			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(6, 60);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(64, 20);
-			this->label8->TabIndex = 9;
-			this->label8->Text = L"Search:";
+			this->SplaySearchlabel->AutoSize = true;
+			this->SplaySearchlabel->Location = System::Drawing::Point(4, 39);
+			this->SplaySearchlabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->SplaySearchlabel->Name = L"SplaySearchlabel";
+			this->SplaySearchlabel->Size = System::Drawing::Size(44, 13);
+			this->SplaySearchlabel->TabIndex = 9;
+			this->SplaySearchlabel->Text = L"Search:";
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(493, 440);
+			this->ClientSize = System::Drawing::Size(329, 286);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->delete_btn);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Controls->Add(this->DeletetextBox);
+			this->Controls->Add(this->SearchtextBox);
+			this->Controls->Add(this->InserttextBox);
+			this->Controls->Add(this->Deletebutton);
+			this->Controls->Add(this->Searchbutton);
+			this->Controls->Add(this->Insertbutton);
 			this->Name = L"MyForm";
 			this->Text = L"CompareTrees";
 			this->groupBox1->ResumeLayout(false);
@@ -325,46 +352,74 @@ namespace CIS376CompareTreesTermProject {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		int insertNum = 0;
-		insertNum = Convert::ToInt32(textBox1->Text);
-		a->insertNode(insertNum);
-		spl->insertNode(insertNum);
-		bst->insertNode(insertNum);
-		label1->Text = "Insert: " + System::Convert::ToString(a->getCountInserts());
-		label4->Text = "Insert: " + System::Convert::ToString(bst->getCountInserts());
-		label7->Text = "Insert: " + System::Convert::ToString(spl->getCountInserts());
+		try
+		{
+			int insertNum = 0;
+			insertNum = Convert::ToInt32(InserttextBox->Text);
+			a->insertNode(insertNum);
+			spl->insertNode(insertNum);
+			bst->insertNode(insertNum);
+			AVLInsertlabel->Text = "Insert: " + System::Convert::ToString(a->getCountInserts());
+			BSTInsertlabel->Text = "Insert: " + System::Convert::ToString(bst->getCountInserts());
+			SplayInsertlabel->Text = "Insert: " + System::Convert::ToString(spl->getCountInserts());
+
+			f.open(filename, std::ios_base::out);
+			a->printTree(f);
+			spl->printTree(f);
+			bst->printTree(f);
+			f.close();
+
+		}
+		catch(...)
+		{
+			InserttextBox->Text = "ERROR";
+		}
+
 		
-		f.open(filename, std::ios_base::out);
-		a->printTree(f);
-		spl->printTree(f);
-		bst->printTree(f);
-		f.close();
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int insertNum = 0;
-		insertNum = Convert::ToInt32(textBox2->Text);
-		a->insertNode(insertNum);
-		spl->insertNode(insertNum);
-		bst->insertNode(insertNum);
-		label2->Text = "Search: " + System::Convert::ToString(a->getCountSearches());
-		label5->Text = "Search: " + System::Convert::ToString(bst->getCountSearches());
-		label8->Text = "Search: " + System::Convert::ToString(spl->getCountSearches());
+
+		try
+		{
+			insertNum = Convert::ToInt32(SearchtextBox->Text);
+			bool find = false;
+			a->searchNode(insertNum, find);
+			spl->searchNode(insertNum, find);
+			bst->searchNode(insertNum, find);
+			AVLSearchlabel->Text = "Search: " + System::Convert::ToString(a->getCountSearches());
+			BSTSearchlabel->Text = "Search: " + System::Convert::ToString(bst->getCountSearches());
+			SplaySearchlabel->Text = "Search: " + System::Convert::ToString(spl->getCountSearches());
+
+		}
+		catch (...)
+		{
+			SearchtextBox->Text = "ERROR";
+		}
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		int insertNum = 0;
-		insertNum = Convert::ToInt32(textBox3->Text);
-		a->insertNode(insertNum);
-		spl->insertNode(insertNum);
-		bst->insertNode(insertNum);
-		label3->Text = "Delete: " + System::Convert::ToString(a->getCountDeletes());
-		label6->Text = "Delete: " + System::Convert::ToString(bst->getCountDeletes());
-		label9->Text = "Delete: " + System::Convert::ToString(spl->getCountDeletes());
+		
+		try
+		{
+			insertNum = Convert::ToInt32(DeletetextBox->Text);
+			a->deleteItem(insertNum);
+			spl->deleteItem(insertNum);
+			bst->deleteItem(insertNum);
+			AVLDeletelabel->Text = "Delete: " + System::Convert::ToString(a->getCountDeletes());
+			BSTDeletelabel->Text = "Delete: " + System::Convert::ToString(bst->getCountDeletes());
+			SplayDeletelabel->Text = "Delete: " + System::Convert::ToString(spl->getCountDeletes());
 
-		f.open(filename, std::ios_base::out);
-		a->printTree(f);
-		spl->printTree(f);
-		bst->printTree(f);
-		f.close();
+			f.open(filename, std::ios_base::out);
+			a->printTree(f);
+			spl->printTree(f);
+			bst->printTree(f);
+			f.close();
+		}
+		catch (...)
+		{
+			DeletetextBox->Text = "ERROR";
+		}
 	}
 
 };

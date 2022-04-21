@@ -6,17 +6,11 @@
 #include <string>
 #include <iomanip>
 #include <vector>
-
 using std::string;
-
 using std::vector;
-
 using std::ofstream;
-
 using std::cout;
-
 using std::endl;
-
 using std::max;
 
 struct treeNode
@@ -24,34 +18,20 @@ struct treeNode
 	int key;
 	treeNode* right;
 	treeNode* left;
-	treeNode* twin;
-	int numOfTwin;
 	int height;
 };
 
 class tree
 {
 protected:
-	/*
-	struct treeNode
-	{
-		int key;
-		treeNode* right;
-		treeNode* left;
-		treeNode* twin;
-		int numOfTwin;
-	};
-	*/
-
 	treeNode* root;
 	int countSearch;
 	int countDelete;
 	int countInsert;
-	//const string filename = "TreeLogFile.txt";
 	string treeType;
 
 	virtual void insert(treeNode*& p, int item);
-	virtual void print(treeNode* p, ofstream& f, int addSpaces);//ofstream& f, int addSpaces);
+	virtual void print(treeNode* p, ofstream& f, int addSpaces);
 	virtual void search(treeNode* p, int item, bool& status);
 	virtual void del(treeNode*& p, int item);
 	virtual void deleteNode(treeNode*& p);
@@ -61,10 +41,10 @@ protected:
 
 public:
 	tree();
-	virtual void insertNode(int item);//, ofstream& f);
+	virtual void insertNode(int item);
 	virtual void printTree(ofstream& f);
-	virtual void searchNode(int item, bool& status);// , ofstream& f);
-	virtual void deleteItem(int item);// , ofstream& f);
+	virtual void searchNode(int item, bool& status);
+	virtual void deleteItem(int item);
 	int findHeight();
 	int getCountDeletes();
 	int getCountInserts();
@@ -90,64 +70,33 @@ int tree::getCountDeletes()
 	return countDelete;
 }
 
-/*
-Desc: getter for count inserts
-Pre-condition : none
-Post-condition : returns count inserts
-*/
 int tree::getCountInserts()
 {
 	return countInsert;
 }
 
-/*
-Desc: getter for count searches
-Pre-condition : none
-Post-condition : returns count searches
-*/
 int tree::getCountSearches()
 {
 	return countSearch;
 }
 
-/*
-Desc: insert node function that calls internal insert function
-Pre-condition : integer
-Post-condition : none
-*/
-void tree::insertNode(int item)//, ofstream& f)
+void tree::insertNode(int item)
 {
 	insert(root, item);
 	countInsert++;
 }
 
-/*
-Desc: inserts a node at a leaf point
-Pre-condition : treeNode pointer, integer
-Post-condition : none
-*/
 void tree::insert(treeNode*& p, int item)
 {
 	if (p == NULL)
 	{
 		p = new treeNode;
 		p->key = item;
-		//p->numOfTwin = 1;
-		//p->twin = NULL;
 		p->right = NULL;
 		p->left = NULL;
-		return;
-	}
-	/*
-	else if (item == p->key)
-	{
-		//p->twin = new treeNode;
-		p->numOfTwin++;
 		countInsert++;
-		insert(p->twin, item);
 		return;
 	}
-	*/
 	else if (item < p->key)
 	{
 		countInsert++;
@@ -160,22 +109,12 @@ void tree::insert(treeNode*& p, int item)
 	}
 }
 
-/*
-Desc: search function that calls internal search function
-Pre-condition : integer, boolean
-Post-condition : none
-*/
-void tree::searchNode(int item, bool& status)//, ofstream& f)
+void tree::searchNode(int item, bool& status)
 {
-	search(root, item, status);
 	countSearch++;
+	search(root, item, status);
 }
 
-/*
-Desc: searches for a node
-Pre-condition : treeNode pointer, integer, boolean
-Post-condition : none
-*/
 void tree::search(treeNode* p, int item, bool& status)
 {
 	if (p == NULL)
@@ -194,32 +133,22 @@ void tree::search(treeNode* p, int item, bool& status)
 	}
 	else
 	{
+		countSearch++;
 		item = p->key;
 		status = true;
 	}
 }
 
-/*
-Desc: delete function that calls internal search for delete function
-Pre-condition :integer
-Post-condition : none
-*/
-void tree::deleteItem(int item)//, ofstream& f)
+void tree::deleteItem(int item)
 {
 	del(root, item);
-	countDelete++;
 }
 
-/*
-Desc: searches for where to delete
-Pre-condition : treeNode pointer, integer
-Post-condition : none
-*/
+
 void tree::del(treeNode*& p, int item)
 {
 	if (p == NULL)
 	{
-		//cout << item << " does not exist in the tree" << endl;
 		return;
 	}
 	else if (item < p->key)
@@ -232,50 +161,21 @@ void tree::del(treeNode*& p, int item)
 		countDelete++;
 		del(p->right, item);
 	}
-	/*
-	else if (item == p->key && p->numOfTwin > 1)
-	{
-		p->numOfTwin--;
-		//treeNode* prev = p;
-		//treeNode* temp = p->twin;
-		//while (temp != NULL)
-		//{
-		//	prev = temp;
-		//	temp = p->twin;
-		//}
-		//prev->twin = temp->twin;
-		//delete temp;
-	}
-	*/
 	else
 	{
+		countDelete++;
 		deleteNode(p);
 		//return;
 	}
 
 }
 
-/*
-Desc: deletes the node
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
 void tree::deleteNode(treeNode*& p)
 {
 	int item;
 	treeNode* temp;
 
 	temp = p;
-
-	//if (p->twin !=  NULL)
-	//{
-	//	p->numOfTwin--;
-		//while (p->twin != NULL)
-		//{
-		//	temp = p->twin;
-		//}
-		//delete temp;
-	//}
 
 	if (p->left == NULL)
 	{
@@ -290,21 +190,14 @@ void tree::deleteNode(treeNode*& p)
 	else
 	{
 		treeNode* temp = p;
-		getPredecessor(temp, item); // p->right
+		getPredecessor(temp, item);
 		p->key = temp->key;
-		//p->twin = temp->twin;
 		del(p->right, item);
 	}
 
 	return;
-	//temp = NULL;
 }
 
-/*
-Desc: finds the smallest in the tree given
-Pre-condition : treeNode pointer, integer
-Post-condition : none
-*/
 void tree::getPredecessor(treeNode* p, int& item)
 {
 	while (p != NULL && p->left != NULL)
@@ -319,20 +212,13 @@ void tree::getPredecessor(treeNode* p, int& item)
 
 void tree::printTree(ofstream& f)
 {
-	//f.open(filename, std::ios_base::app);
-
 	f << "---------------------------------------------------------------" << endl;
 	f << treeType << ':' << endl;
 	print(root, f, 0);
 	f << "---------------------------------------------------------------" << endl;
 }
 
-/*
-Desc: prints 
-Pre-condition :treeNode pointer, ofstream, integer
-Post-condition : none
-*/
-void tree::print(treeNode* p, ofstream& f, int addSpaces)//ofstream& f, int addSpaces)
+void tree::print(treeNode* p, ofstream& f, int addSpaces)
 {
 	
 	if (root != NULL)
@@ -345,39 +231,18 @@ void tree::print(treeNode* p, ofstream& f, int addSpaces)//ofstream& f, int addS
 		for (int i = 0; i < addSpaces; i++)
 		{
 			f << " ";
-			//f << " ";
-			cout << " ";
 		}
-		/*
-		if (p->twin != NULL && p->numOfTwin > 1)
-		{
-			f << p->key << "(" << p->numOfTwin << ")" << endl;
-		}
-		else
-		{
-<<<<<<< HEAD
+
 			f << p->key << endl;
-		}
-=======
-		*/
-			f << p->key << endl;
-		//}
 
 		if (p->left != NULL)
 		{
-			//print(p->left, addSpaces + 7);
 			print(p->left, f, addSpaces + 7);
-
 		}
 	}
 
 }
 
-/*
-Desc: calls internal height function to find the height of the tree
-Pre-condition :none
-Post-condition :integer
-*/
 int tree::findHeight()
 {
 	int ht = 0;
@@ -385,11 +250,6 @@ int tree::findHeight()
 	return (ht - 1);
 }
 
-/*
-Desc: finds the height of the tree given
-Pre-condition :treeNode pointer, integer
-Post-condition : integer
-*/
 int tree::height(treeNode* p, int& h)
 {
 	if (p == NULL)
@@ -402,18 +262,12 @@ int tree::height(treeNode* p, int& h)
 	return h;
 }
 
-/*
-Desc: destroys the tree
-Pre-condition :treeNode pointer
-Post-condition : none
-*/
 void tree::destroy(treeNode*& p)
 {
 	if (p != NULL)
 	{
 		destroy(p->left);
 		destroy(p->right);
-		//p = p->twin;
 		delete p;
 	}
 }

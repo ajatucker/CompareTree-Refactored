@@ -7,61 +7,31 @@
 #include <iomanip>
 #include <vector>
 #include "tree.h"
-
 using std::string;
-
 using std::vector;
-
 using std::ofstream;
-
 using std::cout;
-
 using std::endl;
-
 using std::max;
 
 class avl: public tree
 {
 protected:
-	
-	//treeNode* root;
-	//int countSearch;
-	//int countDelete;
-	//int countInsert;
-
-	void insert(treeNode*& p, int item);//, vector<string>& s);
-	//void print(treeNode* p, ofstream& f, int addSpaces);
-	void search(treeNode* p, int item, bool& status);
-	//void del(treeNode*& p, int item, vector<string>& s);
-	void deleteNode(treeNode*& p, vector<string>& s);
-	//void getPredecessor(treeNode* p, int& item);
+	void insert(treeNode*& p, int item);
+	void deleteNode(treeNode*& p);
 	int getHeight(treeNode* p);
-	//void destroy(treeNode*& p);
 	int getBalance(treeNode* p);
-	void rotateRight(treeNode*& r); //change
-	void rotateLeft(treeNode*& r); //these
-	void rotateLeftRight(treeNode*& r); //just have right/left
-	void rotateRightLeft(treeNode*& r); //just have right/left 
-	void doubleRotateRight(treeNode*& r); //just have right/left
-	void doubleRotateLeft(treeNode*& r); //just have right/left
-	void balancing(treeNode*& p, int balance, int& item, int& count); //vector<string>& s
+	void rotateRight(treeNode*& r);
+	void rotateLeft(treeNode*& r);
+	void balancing(treeNode*& p, int balance, int& item, int& count);
 
 public:
 	avl();
-	//void insertNode(int item, ofstream& f);
-	//void printTree(ofstream& f);
-	//void searchNode(int item, bool& status);
-	//void deleteItem(int item, ofstream& f);
-	//int findHeight();
-	//int getCountDeletes();
-	//int getCountInserts();
-	//int getCountSearches();
 	~avl();
 };
 
 #endif
 
-//constructor
 avl::avl()
 {
 	root = NULL;
@@ -71,104 +41,26 @@ avl::avl()
 	treeType = "AVL Tree";
 }
 
-/*
-Desc: getter for count deletes
-Pre-condition : none
-Post-condition : returns count delete
-*/
-/*
-int avl::getCountDeletes()
-{
-	return countDelete;
-}
-*/
-/*
-Desc: getter for count inserts
-Pre-condition : none
-Post-condition : returns count inserts
-*/
-/*
-int avl::getCountInserts()
-{
-	return countInsert;
-}
-*/
-
-/*
-Desc: getter for count searches
-Pre-condition : none
-Post-condition : returns count searches
-*/
-/*
-int avl::getCountSearches()
-{
-	return countSearch;
-}
-*/
-
-
-/*
-Desc: insert node function that calls internal insert function
-Pre-condition : integer, ofstream
-Post-condition : none
-*/
-/*
-void avl::insertNode(int item, ofstream& f)
-{
-	vector<string> rotate;
-	vector<string>::iterator i;
-	insert(root, item, rotate);
-	countInsert++;
-	if (rotate.size() > 0)
-	{
-		cout << "Insert Rotations: " << rotate.size() << " ";
-		for (i = rotate.begin(); i < rotate.end(); i++)
-		{
-			f << *i << " ";
-			cout << *i << " ";
-		}
-		f << endl;
-		cout << endl;
-	}
-}
-*/
-
-/*
-Desc: inserts a node at a leaf point
-Pre-condition : treeNode pointer, integer, string vector
-Post-condition : none
-*/
-void avl::insert(treeNode*& p, int item)//, vector<string>& s)
+void avl::insert(treeNode*& p, int item)
 {
 	if (p == NULL)
 	{
 		p = new treeNode;
 		p->key = item;
-		//p->twin = NULL;
-		//p->numOfTwin = 1;
 		p->right = NULL;
 		p->left = NULL;
 		p->height = 1;
 		return;
 	}
-	/*
-	else if (item == p->key)
-	{
-		//p->numOfTwin++;
-		countInsert++;
-		//insert(p->twin, item, s);
-		return;
-	}
-	*/
 	else if (item < p->key)
 	{
 		countInsert++;
-		insert(p->left, item);//, s);
+		insert(p->left, item);
 	}
 	else
 	{
 		countInsert++;
-		insert(p->right, item);//, s);
+		insert(p->right, item);
 	}
 
 	p->height = max(getHeight(p->left), getHeight(p->right)) + 1;
@@ -183,25 +75,19 @@ void avl::insert(treeNode*& p, int item)//, vector<string>& s)
 
 }
 
-/*
-Desc: balances the tree given in proper avl format
-Pre-condition : treeNode pointer, 3 integers, string vector
-Post-condition : none
-*/
-void avl::balancing(treeNode*& p, int balance, int& item, int& count) //vector<string>& s,
+void avl::balancing(treeNode*& p, int balance, int& item, int& count)
 {
 	if (balance > 1 && item < p->left->key)
 	{
 		if (root->left->left == p)
 		{
 			count++;
-			doubleRotateLeft(p);
-			//s.push_back("LL");
+			rotateRight(p->left);
+			rotateLeft(p);
 		}
 		else
 		{
 			count++;
-			//s.push_back("L");
 			rotateLeft(p);
 		}
 	}
@@ -211,13 +97,12 @@ void avl::balancing(treeNode*& p, int balance, int& item, int& count) //vector<s
 		if (root->right->right == p)
 		{
 			count++;
-			//s.push_back("RR");
-			doubleRotateRight(p);
+			rotateLeft(p->right);
+			rotateRight(p);
 		}
 		else
 		{
 			count++;
-			//s.push_back("R");
 			rotateRight(p);
 		}
 	}
@@ -225,45 +110,18 @@ void avl::balancing(treeNode*& p, int balance, int& item, int& count) //vector<s
 	if (balance > 1 && item > p->left->key)
 	{
 		count++;
-		//s.push_back("RL");
-		rotateRightLeft(p);
+		rotateRight(p->left);
+		rotateLeft(p);
 	}
 
 	if (balance < -1 && item < p->right->key)
 	{
 		count++;
-		//s.push_back("LR");
-		rotateLeftRight(p);
+		rotateLeft(p->right);
+		rotateRight(p);
 	}
 }
 
-/*
-Desc: rotates the tree for the left right case
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
-void avl::rotateLeftRight(treeNode*& r)
-{
-	rotateLeft(r->right);
-	rotateRight(r);
-}
-
-/*
-Desc: rotates the tree for the right left case
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
-void avl::rotateRightLeft(treeNode*& r)
-{
-	rotateRight(r->left);
-	rotateLeft(r);
-}
-
-/*
-Desc: rotates the tree for the right case
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
 void avl::rotateRight(treeNode*& r)
 {
 	if (r == NULL || r->right == NULL)
@@ -278,11 +136,6 @@ void avl::rotateRight(treeNode*& r)
 	r = temp;
 }
 
-/*
-Desc: rotates the tree for the left case
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
 void avl::rotateLeft(treeNode*& r)
 {
 	if (r == NULL || r->left == NULL)
@@ -297,147 +150,7 @@ void avl::rotateLeft(treeNode*& r)
 	r = temp;
 }
 
-/*
-Desc: rotates the tree for the double right case
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
-void avl::doubleRotateRight(treeNode*& r)
-{
-	rotateLeft(r->right);
-	rotateRight(r);
-}
-
-/*
-Desc: rotates the tree for the double left case
-Pre-condition : treeNode pointer
-Post-condition : none
-*/
-void avl::doubleRotateLeft(treeNode*& r)
-{
-	rotateRight(r->left);
-	rotateLeft(r);
-}
-
-/*
-Desc: search function that calls internal search function
-Pre-condition : integer, boolean
-Post-condition : none
-*/
-/*
-void avl::searchNode(int item, bool& status)
-{
-	search(root, item, status);
-	countSearch++;
-}
-*/
-
-/*
-Desc: searches for a node
-Pre-condition : treeNode pointer, integer, boolean
-Post-condition : none
-*/
-void avl::search(treeNode* p, int item, bool& status)
-{
-	if (p == NULL)
-	{
-		status = false;
-	}
-	else if (item < p->key)
-	{
-		countSearch++;
-		search(p->left, item, status);
-	}
-	else if (item > p->key)
-	{
-		countSearch++;
-		search(p->right, item, status);
-	}
-	else
-	{
-		item = p->key;
-		status = true;
-	}
-}
-
-/*
-Desc: delete function that calls internal search for delete function
-Pre-condition :integer
-Post-condition : none
-*/
-/*
-void avl::deleteItem(int item, ofstream& f)
-{
-	vector<string> rotate;
-	vector<string>::iterator i;
-	del(root, item);// rotate);
-	countDelete++;
-	if (rotate.size() > 0)
-	{
-		cout << "Delete Rotations: " << rotate.size() << " ";
-		for (i = rotate.begin(); i < rotate.end(); i++)
-		{
-			f << *i << " ";
-			cout << *i << " ";
-		}
-		f << endl;
-		cout << endl;
-	}
-}
-*/
-
-/*
-Desc: searches for where to delete
-Pre-condition : treeNode pointer, integer, string vector
-Post-condition : none
-*/
-/*
-void avl::del(treeNode*& p, int item, vector<string>& s)
-{
-	if (p == NULL)
-	{
-		//cout << item << " does not exist in the tree" << endl;
-		return;
-	}
-	else if (item < p->key)
-	{
-		countDelete++;
-		del(p->left, item, s);
-	}
-	else if (item > p->key)
-	{
-		countDelete++;
-		del(p->right, item, s);
-	}
-	else if (item == p->key && p->numOfTwin > 1)
-	{
-		p->numOfTwin--;
-		//treeNode* prev = p;
-		//treeNode* temp = p->twin;
-		//while (temp != NULL)
-		//{
-		//	prev = temp;
-		//	temp = p->twin;
-		//}
-		//prev->twin = temp->twin;
-		//delete temp;
-	}
-	else
-	{
-		deleteNode(p, s);
-		//return;
-	}
-
-	//return;
-}
-*/
-
-/*
-Desc: deletes the node
-Pre-condition : treeNode pointer, string vector
-Post-condition : none
-*/
-void avl::deleteNode(treeNode*& p, vector<string>& s)
+void avl::deleteNode(treeNode*& p)
 {
 	int item;
 	treeNode* temp;
@@ -448,21 +161,18 @@ void avl::deleteNode(treeNode*& p, vector<string>& s)
 	{
 		p = p->right;
 		delete temp;
-		//return;
 	}
 	else if (p->right == NULL)
 	{
 		p = p->left;
 		delete temp;
-		//return;
 	}
 	else
 	{
 		treeNode* temp = p;
-		getPredecessor(temp, item); // p->right
+		getPredecessor(temp, item);
 		p->key = temp->key;
-		//p->twin = temp->twin;
-		del(p->right, item);// , s);
+		del(p->right, item);
 	}
 
 	if (p == NULL)
@@ -479,103 +189,8 @@ void avl::deleteNode(treeNode*& p, vector<string>& s)
 		balancing(p, balance, item, countDelete);
 	}
 
-	//return;
 }
 
-/*
-Desc: finds the smallest in the tree given
-Pre-condition : treeNode pointer, integer
-Post-condition : none
-*/
-/*
-void avl::getPredecessor(treeNode* p, int& item)
-{
-	while (p != NULL && p->left != NULL)
-	{
-		countDelete++;
-		p = p->left;
-		//item = p->key;
-	}
-	item = p->key;
-}
-*/
-
-/*
-Desc: calls internal print function
-Pre-condition :ofstream
-Post-condition : none
-*/
-/*
-void avl::printTree(ofstream& f)
-{
-	cout << "---------------------------------------------------------------" << endl;
-	f << "---------------------------------------------------------------" << endl;
-	print(root, f, 0);
-	f << "---------------------------------------------------------------" << endl;
-	cout << "---------------------------------------------------------------" << endl;
-}
-*/
-
-/*
-Desc: printfs
-Pre-condition :treeNode pointer, ofstream, integer
-Post-condition : none
-*/
-/*
-void avl::print(treeNode* p, ofstream& f, int addSpaces)
-{
-	if (root != NULL)
-	{
-
-		if (p->right != NULL)
-		{
-			print(p->right, f, addSpaces + 7);
-		}
-
-		for (int i = 0; i < addSpaces; i++)
-		{
-			f << " ";
-			cout << " ";
-		}
-		if (p->twin != NULL && p->numOfTwin > 1)
-		{
-			f << p->key << "(" << p->numOfTwin << ")" << endl;
-			cout << p->key << "(" << p->numOfTwin << ")" << endl;
-		}
-		else
-		{
-			f << p->key << endl;
-			cout << p->key << endl;
-		}
-
-		if (p->left != NULL)
-		{
-			print(p->left, f, addSpaces + 7);
-		}
-
-	}
-
-}
-*/
-
-/*
-Desc: calls internal height function to find the height of the tree
-Pre-condition :none
-Post-condition :integer
-*/
-/*
-int avl::findHeight()
-{
-	int ht = getHeight(root);
-	return (ht - 1);
-}
-*/
-
-/*
-Desc: finds the balance value for the balancing function
-Pre-condition :treeNode pointer
-Post-condition : integer
-*/
 int avl::getBalance(treeNode* p)
 {
 	if (p == NULL)
@@ -588,11 +203,6 @@ int avl::getBalance(treeNode* p)
 	return balance;
 }
 
-/*
-Desc: finds the height of the tree given
-Pre-condition :treeNode pointer
-Post-condition : integer
-*/
 int avl::getHeight(treeNode* p)
 {
 	if (p == NULL)
@@ -602,25 +212,6 @@ int avl::getHeight(treeNode* p)
 	return p->height;
 }
 
-/*
-Desc: destroys the tree
-Pre-condition :treeNode pointer
-Post-condition : none
-*/
-/*
-void avl::destroy(treeNode*& p)
-{
-	if (p != NULL)
-	{
-		destroy(p->left);
-		destroy(p->right);
-		p = p->twin;
-		delete p;
-	}
-}
-*/
-
-//destructor
 avl::~avl()
 {
 	destroy(root);
