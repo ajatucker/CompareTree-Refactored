@@ -320,7 +320,6 @@ namespace CIS376CompareTreesTermProject {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		int test = 3;
 		int insertNum = 0;
 		insertNum = Convert::ToInt32(textBox1->Text);
 		a->insertNode(insertNum);
@@ -331,8 +330,24 @@ namespace CIS376CompareTreesTermProject {
 		label7->Text = "Insert: " + System::Convert::ToString(spl->getCountInserts());
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		int insertNum = 0;
+		insertNum = Convert::ToInt32(textBox2->Text);
+		a->insertNode(insertNum);
+		spl->insertNode(insertNum);
+		bst->insertNode(insertNum);
+		label2->Text = "Search: " + System::Convert::ToString(a->getCountInserts());
+		label5->Text = "Search: " + System::Convert::ToString(bst->getCountInserts());
+		label8->Text = "Search: " + System::Convert::ToString(spl->getCountInserts());
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		int insertNum = 0;
+		insertNum = Convert::ToInt32(textBox3->Text);
+		a->insertNode(insertNum);
+		spl->insertNode(insertNum);
+		bst->insertNode(insertNum);
+		label3->Text = "Delete: " + System::Convert::ToString(a->getCountInserts());
+		label6->Text = "Delete: " + System::Convert::ToString(bst->getCountInserts());
+		label9->Text = "Delete: " + System::Convert::ToString(spl->getCountInserts());
 	}
 
 };
