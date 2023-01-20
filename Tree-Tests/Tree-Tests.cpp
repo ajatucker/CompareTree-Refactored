@@ -3,19 +3,12 @@
 #include "../CIS376-CompareTrees-TermProject/tree.h"
 #include "../CIS376-CompareTrees-TermProject/avlTree.h"
 #include "../CIS376-CompareTrees-TermProject/splayTree.h"
-
 using std::string;
-
 using std::vector;
-
 using std::ofstream;
-
 using std::cout;
-
 using std::endl;
-
 using std::max;
-
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
